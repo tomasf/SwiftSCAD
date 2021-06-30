@@ -18,6 +18,10 @@ public struct Vector2D: ExpressibleByArrayLiteral {
 		self.y = y
 	}
 
+	public init(_ x: Double, _ y: Double) {
+		self.init(x: x, y: y)
+	}
+
 	public init(arrayLiteral: Double...) {
 		precondition(arrayLiteral.count == 2, "Vector2D requires exactly two elements")
 		self.init(x: arrayLiteral[0], y: arrayLiteral[1])

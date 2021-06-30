@@ -20,6 +20,10 @@ public struct Vector3D: ExpressibleByArrayLiteral {
 		self.z = z
 	}
 
+	public init(_ x: Double, _ y: Double, _ z: Double) {
+		self.init(x: x, y: y, z: z)
+	}
+
 	public init(arrayLiteral: Double...) {
 		precondition(arrayLiteral.count == 3, "Vector3D requires exactly three elements")
 		self.init(x: arrayLiteral[0], y: arrayLiteral[1], z: arrayLiteral[2])
