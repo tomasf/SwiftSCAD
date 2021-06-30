@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct Offset: Geometry2D {
+public struct Offset: Geometry2D {
 	let body: Geometry2D
 	let amount: Double
 	let style: Style
 
-	init(amount: Double, style: Style, @UnionBuilder body: () -> Geometry2D) {
+	public init(amount: Double, style: Style, @UnionBuilder body: () -> Geometry2D) {
 		self.amount = amount
 		self.style = style
 		self.body = body()
 	}
 
-	func generateOutput(environment: Environment) -> String {
+	public func generateOutput(environment: Environment) -> String {
 		let params: String
 
 		switch style {
@@ -33,20 +33,20 @@ struct Offset: Geometry2D {
 		return "offset(\(params)) \(body.generateOutput(environment: environment))"
 	}
 
-	enum Style {
+	public enum Style {
 		case round
 		case miter
 		case bevel
 	}
 
-	enum Side {
+	public enum Side {
 		case outside
 		case inside
 		case both
 	}
 }
 
-extension Geometry2D {
+public extension Geometry2D {
 	func offset(amount: Double, style: Offset.Style) -> Geometry2D {
 		Offset(amount: amount, style: style) { self }
 	}

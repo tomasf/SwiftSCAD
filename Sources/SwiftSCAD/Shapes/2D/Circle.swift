@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct Circle: Geometry2D {
-	let diameter: Double
+public struct Circle: Geometry2D {
+	public let diameter: Double
 
-	init(diameter: Double) {
+	public init(diameter: Double) {
 		self.diameter = diameter
 	}
 
-	init(radius: Double) {
+	public init(radius: Double) {
 		self.diameter = radius * 2
 	}
 
-	func generateOutput(environment: Environment) -> String {
+	public func generateOutput(environment: Environment) -> String {
 		return "circle(d = \(diameter));"
 	}
 }

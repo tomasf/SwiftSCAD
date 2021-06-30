@@ -23,11 +23,11 @@ struct IfPreview3D: Geometry3D {
 	}
 }
 
-func IfPreview(@UnionBuilder _ preview: () -> Geometry3D, @UnionBuilder ifRender render: () -> Geometry3D = { Empty() }) -> Geometry3D {
+public func IfPreview(@UnionBuilder _ preview: () -> Geometry3D, @UnionBuilder ifRender render: () -> Geometry3D = { Empty() }) -> Geometry3D {
 	IfPreview3D(ifPreview: preview(), ifRender: render())
 }
 
-func IfRender(@UnionBuilder _ render: () -> Geometry3D, @UnionBuilder ifPreview preview: () -> Geometry3D = { Empty() }) -> Geometry3D {
+public func IfRender(@UnionBuilder _ render: () -> Geometry3D, @UnionBuilder ifPreview preview: () -> Geometry3D = { Empty() }) -> Geometry3D {
 	IfPreview3D(ifPreview: preview(), ifRender: render())
 }
 

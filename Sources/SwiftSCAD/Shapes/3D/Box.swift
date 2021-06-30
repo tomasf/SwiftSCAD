@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct Box: Geometry3D {
-	let size: Vector3D
-	let center: Axes3D
+public struct Box: Geometry3D {
+	public let size: Vector3D
+	public let center: Axes3D
 
-	init(_ size: Vector3D, center: Axes3D = []) {
+	public init(_ size: Vector3D, center: Axes3D = []) {
 		self.size = size
 		self.center = center
 	}
 
-	func generateOutput(environment: Environment) -> String {
+	public func generateOutput(environment: Environment) -> String {
 		let cubeExpression = "cube(\(size.scadString));"
 		guard !center.isEmpty else {
 			return cubeExpression

@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct Vector2D: ExpressibleByArrayLiteral {
-	let x: Double
-	let y: Double
+public struct Vector2D: ExpressibleByArrayLiteral {
+	public let x: Double
+	public let y: Double
 
-	static let zero = Vector2D(x: 0, y: 0)
+	public static let zero = Vector2D(x: 0, y: 0)
 
-	init(x: Double, y: Double) {
+	public init(x: Double, y: Double) {
 		self.x = x
 		self.y = y
 	}
 
-	init(arrayLiteral: Double...) {
+	public init(arrayLiteral: Double...) {
 		precondition(arrayLiteral.count == 2, "Vector2D requires exactly two elements")
 		self.init(x: arrayLiteral[0], y: arrayLiteral[1])
 	}
@@ -31,7 +31,7 @@ struct Vector2D: ExpressibleByArrayLiteral {
 }
 
 
-extension Vector2D {
+public extension Vector2D {
 	static func /(_ v: Vector2D, _ d: Double) -> Vector2D {
 		return Vector2D(
 			x: v.x / d,

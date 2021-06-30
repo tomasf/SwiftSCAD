@@ -7,20 +7,20 @@
 
 import Foundation
 
-struct Arc: Geometry2D {
-	let angles: Range<Double>
-	let radius: Double
+public struct Arc: Geometry2D {
+	public let angles: Range<Double>
+	public let radius: Double
 
-	init(angles: Range<Double>, radius: Double) {
+	public init(angles: Range<Double>, radius: Double) {
 		self.angles = angles
 		self.radius = radius
 	}
 
-	init(angles: Range<Double>, diameter: Double) {
+	public init(angles: Range<Double>, diameter: Double) {
 		self.init(angles: angles, radius: diameter / 2)
 	}
 
-	func generateOutput(environment: Environment) -> String {
+	public func generateOutput(environment: Environment) -> String {
 		let magnitude = angles.upperBound - angles.lowerBound
 		let fraction = magnitude / 360.0
 

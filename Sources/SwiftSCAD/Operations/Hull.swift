@@ -19,11 +19,11 @@ struct Hull3D: Geometry3D {
 	}
 }
 
-func Hull(@UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
+public func Hull(@UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
 	Hull3D(body)
 }
 
-extension Geometry3D {
+public extension Geometry3D {
 	func hull() -> Geometry3D {
 		Hull3D { self }
 	}
@@ -42,11 +42,11 @@ struct Hull2D: Geometry2D {
 	}
 }
 
-func Hull(@UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
+public func Hull(@UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
 	Hull2D(body)
 }
 
-extension Geometry2D {
+public extension Geometry2D {
 	func hull() -> Geometry2D {
 		Hull2D { self }
 	}

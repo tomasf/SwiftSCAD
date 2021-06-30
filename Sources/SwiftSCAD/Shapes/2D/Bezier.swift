@@ -54,7 +54,7 @@ struct BezierCurve {
 	}
 }
 
-struct BezierPath: Geometry2D {
+public struct BezierPath: Geometry2D {
 	let startPoint: Vector2D
 	let curves: [BezierCurve]
 
@@ -67,7 +67,7 @@ struct BezierPath: Geometry2D {
 		self.curves = curves
 	}
 
-	init(startPoint: Vector2D) {
+	public init(startPoint: Vector2D) {
 		self.init(startPoint: startPoint, curves: [])
 	}
 
@@ -76,15 +76,15 @@ struct BezierPath: Geometry2D {
 		return BezierPath(startPoint: startPoint, curves: newCurves)
 	}
 
-	func line(to point: Vector2D) -> BezierPath {
+	public func line(to point: Vector2D) -> BezierPath {
 		adding(curve: BezierCurve(points: [endPoint, point]))
 	}
 
-	func quadratic(controlPoint: Vector2D, end: Vector2D) -> BezierPath {
+	public func quadratic(controlPoint: Vector2D, end: Vector2D) -> BezierPath {
 		adding(curve: BezierCurve(points: [endPoint, controlPoint, end]))
 	}
 
-	func cubic(controlPoint1: Vector2D, controlPoint2: Vector2D, end: Vector2D) -> BezierPath {
+	public func cubic(controlPoint1: Vector2D, controlPoint2: Vector2D, end: Vector2D) -> BezierPath {
 		adding(curve: BezierCurve(points: [endPoint, controlPoint1, controlPoint2, end]))
 	}
 
@@ -102,7 +102,7 @@ struct BezierPath: Geometry2D {
 		}.joined()
 	}
 
-	func generateOutput(environment: Environment) -> String {
+	public func generateOutput(environment: Environment) -> String {
 		let polygonPoints: [Vector2D]
 		switch environment.facets {
 		case .fixed (let count):

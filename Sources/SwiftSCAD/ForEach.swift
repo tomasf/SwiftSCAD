@@ -19,7 +19,7 @@ struct ForEach3D: Geometry3D {
 	}
 }
 
-func ForEach<C: Sequence>(_ sequence: C, @UnionBuilder body: (C.Element) -> Geometry3D) -> Geometry3D {
+public func ForEach<C: Sequence>(_ sequence: C, @UnionBuilder body: (C.Element) -> Geometry3D) -> Geometry3D {
 	ForEach3D(sequence, body: body)
 }
 
@@ -36,6 +36,6 @@ struct ForEach2D: Geometry2D {
 	}
 }
 
-func ForEach<C: Sequence>(_ sequence: C, @UnionBuilder body: (C.Element) -> Geometry2D) -> Geometry2D {
+public func ForEach<C: Sequence>(_ sequence: C, @UnionBuilder body: (C.Element) -> Geometry2D) -> Geometry2D {
 	ForEach2D(sequence, body: body)
 }

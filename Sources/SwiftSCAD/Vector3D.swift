@@ -7,20 +7,20 @@
 
 import Foundation
 
-struct Vector3D: ExpressibleByArrayLiteral {
-	let x: Double
-	let y: Double
-	let z: Double
+public struct Vector3D: ExpressibleByArrayLiteral {
+	public let x: Double
+	public let y: Double
+	public let z: Double
 
-	static let zero = Vector3D(x: 0, y: 0, z: 0)
+	public static let zero = Vector3D(x: 0, y: 0, z: 0)
 
-	init(x: Double, y: Double, z: Double) {
+	public init(x: Double, y: Double, z: Double) {
 		self.x = x
 		self.y = y
 		self.z = z
 	}
 
-	init(arrayLiteral: Double...) {
+	public init(arrayLiteral: Double...) {
 		precondition(arrayLiteral.count == 3, "Vector3D requires exactly three elements")
 		self.init(x: arrayLiteral[0], y: arrayLiteral[1], z: arrayLiteral[2])
 	}
@@ -35,7 +35,7 @@ struct Vector3D: ExpressibleByArrayLiteral {
 }
 
 
-extension Vector3D {
+public extension Vector3D {
 	static func /(_ v: Vector3D, _ d: Double) -> Vector3D {
 		return Vector3D(
 			x: v.x / d,

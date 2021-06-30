@@ -7,7 +7,7 @@
 
 import Foundation
 
-func Output(to path: String, @UnionBuilder body: () -> Geometry3D) {
+public func Output(to path: String, @UnionBuilder body: () -> Geometry3D) {
 	let fullPath = (path as NSString).expandingTildeInPath
 	let output = body().generateOutput(environment: Environment())
 	do {

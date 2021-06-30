@@ -7,21 +7,21 @@
 
 import Foundation
 
-struct Extrude: Geometry3D {
+public struct Extrude: Geometry3D {
 	let children: Geometry2D
 	let extrusion: Extrusion
 
-	init(height: Double, @UnionBuilder _ body: () -> Geometry2D) {
+	public init(height: Double, @UnionBuilder _ body: () -> Geometry2D) {
 		self.children = body()
 		self.extrusion = .linear(height: height)
 	}
 
-	init(angle: Double, @UnionBuilder _ body: () -> Geometry2D) {
+	public init(angle: Double, @UnionBuilder _ body: () -> Geometry2D) {
 		self.children = body()
 		self.extrusion = .rotational(angle: angle)
 	}
 
-	func generateOutput(environment: Environment) -> String {
+	public func generateOutput(environment: Environment) -> String {
 		let body = children.generateOutput(environment: environment)
 		let firstLine: String
 
@@ -41,7 +41,7 @@ struct Extrude: Geometry3D {
 	}
 }
 
-extension Geometry2D {
+public extension Geometry2D {
 	func extrude(height: Double) -> Extrude {
 		Extrude(height: height, { self })
 	}

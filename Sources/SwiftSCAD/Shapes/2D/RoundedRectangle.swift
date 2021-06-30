@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct RoundedRectangle: Shape2D {
-	let radii: CornerRadii
-	let size: Vector2D
+public struct RoundedRectangle: Shape2D {
+	public let radii: CornerRadii
+	public let size: Vector2D
 
-	init(_ size: Vector2D, cornerRadii: [Double]) {
+	public init(_ size: Vector2D, cornerRadii: [Double]) {
 		self.size = size
 		self.radii = [cornerRadii[0], cornerRadii[1], cornerRadii[2], cornerRadii[3]]
 
@@ -21,15 +21,15 @@ struct RoundedRectangle: Shape2D {
 		precondition(radii.topRight + radii.bottomRight <= size.y)
 	}
 
-	init(_ size: Vector2D, cornerRadius: Double) {
+	public init(_ size: Vector2D, cornerRadius: Double) {
 		self.init(size, cornerRadii: [cornerRadius, cornerRadius, cornerRadius, cornerRadius])
 	}
 
-	init(_ size: Vector2D, bottomLeft: Double, bottomRight: Double, topRight: Double, topLeft: Double) {
+	public init(_ size: Vector2D, bottomLeft: Double, bottomRight: Double, topRight: Double, topLeft: Double) {
 		self.init(size, cornerRadii: [bottomLeft, bottomRight, topRight, topLeft])
 	}
 
-	@UnionBuilder var body: Geometry2D {
+	@UnionBuilder public var body: Geometry2D {
 		Corner(angleOffset: 90, radius: radii.topLeft)
 			.translate(x: radii.topLeft, y: size.y - radii.topLeft)
 
@@ -50,14 +50,14 @@ struct RoundedRectangle: Shape2D {
 		])
 	}
 
-	struct CornerRadii: ExpressibleByArrayLiteral {
-		let bottomLeft: Double
-		let bottomRight: Double
-		let topRight: Double
-		let topLeft: Double
+	public struct CornerRadii: ExpressibleByArrayLiteral {
+		public let bottomLeft: Double
+		public let bottomRight: Double
+		public let topRight: Double
+		public let topLeft: Double
 
-		typealias ArrayLiteralElement = Double
-		init(arrayLiteral elements: Double...) {
+		public typealias ArrayLiteralElement = Double
+		public init(arrayLiteral elements: Double...) {
 			precondition(elements.count == 4, "CornerRadii needs 4 radii")
 			bottomLeft = elements[0]
 			bottomRight = elements[1]

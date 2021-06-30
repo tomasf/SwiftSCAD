@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct Sphere: Geometry3D {
-	let diameter: Double
+public struct Sphere: Geometry3D {
+	public let diameter: Double
 
-	init(diameter: Double) {
+	public init(diameter: Double) {
 		self.diameter = diameter
 	}
 
-	init(radius: Double) {
+	public init(radius: Double) {
 		self.diameter = radius * 2
 	}
 
-	func generateOutput(environment: Environment) -> String {
+	public func generateOutput(environment: Environment) -> String {
 		"sphere(d = \(diameter));"
 	}
 }

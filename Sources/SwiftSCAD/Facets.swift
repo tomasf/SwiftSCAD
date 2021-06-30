@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct SetFacets: Geometry3D {
-	let facets: Environment.Facets
+public struct SetFacets: Geometry3D {
+	public let facets: Environment.Facets
 	let body: Geometry3D
 
-	func generateOutput(environment: Environment) -> String {
+	public func generateOutput(environment: Environment) -> String {
 		let variables: [String: String]
 
 		switch facets {
@@ -30,7 +30,7 @@ struct SetFacets: Geometry3D {
 	}
 }
 
-extension Geometry3D {
+public extension Geometry3D {
 	func withFacets(minAngle: Double, minSize: Double) -> Geometry3D {
 		SetFacets(facets: .dynamic(minAngle: minAngle, minSize: minSize), body: self)
 	}

@@ -7,17 +7,17 @@
 
 import Foundation
 
-protocol Geometry3D {
+public protocol Geometry3D {
 	func generateOutput(environment: Environment) -> String
 }
 
-protocol Geometry2D {
+public protocol Geometry2D {
 	func generateOutput(environment: Environment) -> String
 }
 
 
-@_functionBuilder struct UnionBuilder {
-	static func buildBlock(_ children: Geometry3D...) -> Geometry3D {
+@_functionBuilder public struct UnionBuilder {
+	public static func buildBlock(_ children: Geometry3D...) -> Geometry3D {
 		if children.count > 1 {
 			return Union3D(children: children)
 		} else {
@@ -25,7 +25,7 @@ protocol Geometry2D {
 		}
 	}
 
-	static func buildBlock(_ children: Geometry2D...) -> Geometry2D {
+	public static func buildBlock(_ children: Geometry2D...) -> Geometry2D {
 		if children.count > 1 {
 			return Union2D(children: children)
 		} else {
@@ -34,7 +34,7 @@ protocol Geometry2D {
 	}
 }
 
-extension Sequence {
+public extension Sequence {
 	func forEach(@UnionBuilder _ transform: (Element) -> Geometry3D) -> Geometry3D {
 		Union3D(children: map(transform))
 	}
@@ -44,8 +44,9 @@ extension Sequence {
 	}
 }
 
-struct Empty: Geometry3D, Geometry2D {
-	func generateOutput(environment: Environment) -> String {
+public struct Empty: Geometry3D, Geometry2D {
+	public init() {}
+	public func generateOutput(environment: Environment) -> String {
 		""
 	}
 }

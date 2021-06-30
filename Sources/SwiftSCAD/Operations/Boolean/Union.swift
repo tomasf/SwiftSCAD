@@ -20,7 +20,7 @@ struct Union3D: Geometry3D {
 	}
 }
 
-func Union(@UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
+public func Union(@UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
 	body()
 }
 
@@ -38,6 +38,6 @@ struct Union2D: Geometry2D {
 	}
 }
 
-func Union(@UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
+public func Union(@UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
 	body()
 }

@@ -21,19 +21,19 @@ struct Scale3D: Geometry3D {
 	}
 }
 
-func Scale(_ scale: Vector3D, @UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
+public func Scale(_ scale: Vector3D, @UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
 	Scale3D(scale, body)
 }
 
-func Scale(x: Double = 1, y: Double = 1, z: Double = 1, @UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
+public func Scale(x: Double = 1, y: Double = 1, z: Double = 1, @UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
 	Scale3D(Vector3D(x: x, y: y, z: z), body)
 }
 
-func Scale(_ factor: Double, @UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
+public func Scale(_ factor: Double, @UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
 	Scale3D(Vector3D(x: factor, y: factor, z: factor), body)
 }
 
-extension Geometry3D {
+public extension Geometry3D {
 	func scale(_ scale: Vector3D) -> Geometry3D {
 		Scale3D(scale) { self }
 	}
@@ -66,19 +66,19 @@ struct Scale2D: Geometry2D {
 	}
 }
 
-func Scale(_ scale: Vector2D, @UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
+public func Scale(_ scale: Vector2D, @UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
 	Scale2D(scale, body)
 }
 
-func Scale(_ factor: Double, @UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
+public func Scale(_ factor: Double, @UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
 	Scale2D([factor, factor], body)
 }
 
-func Scale(x: Double = 1, y: Double = 1, @UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
+public func Scale(x: Double = 1, y: Double = 1, @UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
 	Scale2D(Vector2D(x: x, y: y), body)
 }
 
-extension Geometry2D {
+public extension Geometry2D {
 	func scale(_ scale: Vector2D) -> Geometry2D {
 		Scale2D(scale) { self }
 	}

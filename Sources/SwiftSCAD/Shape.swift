@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Shape: Geometry3D {
+public protocol Shape: Geometry3D {
 	var body: Geometry3D { get }
 }
 
@@ -18,12 +18,12 @@ extension Shape {
 }
 
 
-protocol Shape2D: Geometry2D {
+public protocol Shape2D: Geometry2D {
 	var body: Geometry2D { get }
 }
 
 extension Shape2D {
-	func generateOutput(environment: Environment) -> String {
+	public func generateOutput(environment: Environment) -> String {
 		body.generateOutput(environment: environment)
 	}
 }

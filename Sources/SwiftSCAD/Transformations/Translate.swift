@@ -21,15 +21,15 @@ struct Translate3D: Geometry3D {
 	}
 }
 
-func Translate(_ distance: Vector3D, @UnionBuilder _ body: () -> Geometry3D) -> Translate3D {
+public func Translate(_ distance: Vector3D, @UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
 	Translate3D(distance, body)
 }
 
-func Translate(x: Double = 0, y: Double = 0, z: Double = 0, @UnionBuilder _ body: () -> Geometry3D) -> Translate3D {
+public func Translate(x: Double = 0, y: Double = 0, z: Double = 0, @UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
 	Translate3D(Vector3D(x: x, y: y, z: z), body)
 }
 
-extension Geometry3D {
+public extension Geometry3D {
 	func translate(_ distance: Vector3D) -> Geometry3D {
 		Translate3D(distance) { self }
 	}
@@ -58,15 +58,15 @@ struct Translate2D: Geometry2D {
 	}
 }
 
-func Translate(_ distance: Vector2D, @UnionBuilder _ body: () -> Geometry2D) -> Translate2D {
+public func Translate(_ distance: Vector2D, @UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
 	Translate2D(distance, body)
 }
 
-func Translate(x: Double = 0, y: Double = 0, @UnionBuilder _ body: () -> Geometry2D) -> Translate2D {
+public func Translate(x: Double = 0, y: Double = 0, @UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
 	Translate2D(Vector2D(x: x, y: y), body)
 }
 
-extension Geometry2D {
+public extension Geometry2D {
 	func translate(_ distance: Vector2D) -> Geometry2D {
 		Translate2D(distance) { self }
 	}

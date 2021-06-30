@@ -21,28 +21,28 @@ struct Rotate3D: Geometry3D {
 	}
 }
 
-func Rotate(_ degrees: Vector3D, @UnionBuilder _ body: () -> Geometry3D) -> Rotate3D {
+public func Rotate(_ degrees: Vector3D, @UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
 	Rotate3D(degrees, body)
 }
 
-func Rotate(x: Double = 0, y: Double = 0, z: Double = 0, @UnionBuilder _ body: () -> Geometry3D) -> Rotate3D {
+public func Rotate(x: Double = 0, y: Double = 0, z: Double = 0, @UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
 	Rotate3D(Vector3D(x: x, y: y, z: z), body)
 }
 
-func Rotate(radians: Vector3D, @UnionBuilder _ body: () -> Geometry3D) -> Rotate3D {
+public func Rotate(radians: Vector3D, @UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
 	Rotate3D(radians * (180.0 / .pi), body)
 }
 
-extension Geometry3D {
-	func rotate(_ degrees: Vector3D) -> Rotate3D {
+public extension Geometry3D {
+	func rotate(_ degrees: Vector3D) -> Geometry3D {
 		Rotate3D(degrees, { self })
 	}
 
-	func rotate(x: Double = 0, y: Double = 0, z: Double = 0) -> Rotate3D {
+	func rotate(x: Double = 0, y: Double = 0, z: Double = 0) -> Geometry3D {
 		Rotate3D(Vector3D(x: x, y: y, z: z), { self })
 	}
 
-	func rotate(radians: Vector3D) -> Rotate3D {
+	func rotate(radians: Vector3D) -> Geometry3D {
 		Rotate3D(radians * (180.0 / .pi), { self })
 	}
 }
@@ -62,20 +62,20 @@ struct Rotate2D: Geometry2D {
 	}
 }
 
-func Rotate(_ degrees: Double, @UnionBuilder _ body: () -> Geometry2D) -> Rotate2D {
+public func Rotate(_ degrees: Double, @UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
 	Rotate2D(degrees, body)
 }
 
-func Rotate(radians: Double, @UnionBuilder _ body: () -> Geometry2D) -> Rotate2D {
+public func Rotate(radians: Double, @UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
 	Rotate2D(radians * (180.0 / .pi), body)
 }
 
-extension Geometry2D {
-	func rotate(_ degrees: Double) -> Rotate2D {
+public extension Geometry2D {
+	func rotate(_ degrees: Double) -> Geometry2D {
 		Rotate2D(degrees, { self })
 	}
 
-	func rotate(radians: Double) -> Rotate2D {
+	func rotate(radians: Double) -> Geometry2D {
 		Rotate2D(radians * (180.0 / .pi), { self })
 	}
 }
