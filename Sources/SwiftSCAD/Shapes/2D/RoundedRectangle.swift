@@ -15,10 +15,13 @@ public struct RoundedRectangle: Shape2D {
 		self.size = size
 		self.radii = [cornerRadii[0], cornerRadii[1], cornerRadii[2], cornerRadii[3]]
 
-		precondition(radii.bottomLeft + radii.bottomRight <= size.x)
-		precondition(radii.topLeft + radii.topRight <= size.x)
-		precondition(radii.topLeft + radii.bottomLeft <= size.y)
-		precondition(radii.topRight + radii.bottomRight <= size.y)
+		precondition(
+			radii.bottomLeft + radii.bottomRight <= size.x
+				&& radii.topLeft + radii.topRight <= size.x
+				&& radii.topLeft + radii.bottomLeft <= size.y
+				&& radii.topRight + radii.bottomRight <= size.y,
+			"Rounded rectangle corners are too big to fit within rectangle size"
+		)
 	}
 
 	public init(_ size: Vector2D, cornerRadius: Double) {
