@@ -67,4 +67,8 @@ public extension Vector3D {
 			z: axes.contains(.z) ? replacement : z
 		)
 	}
+
+	var xy: Vector2D {
+		Vector2D(x:x, y:y)
+	}
 }

@@ -82,12 +82,6 @@ public extension Vector2D {
 	}
 }
 
-extension Vector2D {
-	init(_ cgPoint: CGPoint) {
-		self = [Double(cgPoint.x), Double(cgPoint.y)]
-	}
-}
-
 struct LineSegment {
 	let p1: Vector2D
 	let p2: Vector2D
