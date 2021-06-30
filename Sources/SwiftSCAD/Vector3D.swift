@@ -60,6 +60,22 @@ public extension Vector3D {
 		)
 	}
 
+	static func +(_ v: Vector3D, _ s: Double) -> Vector3D {
+		return Vector3D(
+			x: v.x + s,
+			y: v.y + s,
+			z: v.z + s
+		)
+	}
+
+	static func -(_ v: Vector3D, _ s: Double) -> Vector3D {
+		return Vector3D(
+			x: v.x - s,
+			y: v.y - s,
+			z: v.z - s
+		)
+	}
+
 	func replace(axes: Axes3D, with replacement: Double) -> Vector3D {
 		Vector3D(
 			x: axes.contains(.x) ? replacement : x,

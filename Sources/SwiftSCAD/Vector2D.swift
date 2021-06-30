@@ -74,6 +74,21 @@ public extension Vector2D {
 		)
 	}
 
+
+	static func +(_ v: Vector2D, _ s: Double) -> Vector2D {
+		return Vector2D(
+			x: v.x + s,
+			y: v.y + s
+		)
+	}
+
+	static func -(_ v: Vector2D, _ s: Double) -> Vector2D {
+		return Vector2D(
+			x: v.x - s,
+			y: v.y - s
+		)
+	}
+
 	func replace(axes: Axes2D, with replacement: Double) -> Vector2D {
 		Vector2D(
 			x: axes.contains(.x) ? replacement : x,
