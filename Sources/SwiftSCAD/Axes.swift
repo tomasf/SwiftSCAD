@@ -7,6 +7,12 @@
 
 import Foundation
 
+public enum Axis3D {
+	case x
+	case y
+	case z
+}
+
 public struct Axes3D: OptionSet {
 	public let rawValue: Int
 	public static let x = Axes3D(rawValue: 1 << 0)
