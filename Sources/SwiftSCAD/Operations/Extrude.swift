@@ -10,15 +10,18 @@ import Foundation
 public struct Extrude: Geometry3D {
 	let children: Geometry2D
 	let extrusion: Extrusion
+	let convexity: Int
 
-	public init(height: Double, @UnionBuilder _ body: () -> Geometry2D) {
+	public init(height: Double, convexity: Int = 2, @UnionBuilder _ body: () -> Geometry2D) {
 		self.children = body()
 		self.extrusion = .linear(height: height)
+		self.convexity = convexity
 	}
 
-	public init(angle: Double, @UnionBuilder _ body: () -> Geometry2D) {
+	public init(angle: Double, convexity: Int = 2, @UnionBuilder _ body: () -> Geometry2D) {
 		self.children = body()
 		self.extrusion = .rotational(angle: angle)
+		self.convexity = convexity
 	}
 
 	public func generateOutput(environment: Environment) -> String {
@@ -27,9 +30,9 @@ public struct Extrude: Geometry3D {
 
 		switch extrusion {
 		case .linear (let height):
-			firstLine = "linear_extrude(height = \(height))"
+			firstLine = "linear_extrude(height = \(height), convexity = \(convexity))"
 		case .rotational (let angle):
-			firstLine = "rotate_extrude(angle = \(angle))"
+			firstLine = "rotate_extrude(angle = \(angle), convexity = \(convexity))"
 		}
 
 		return "\(firstLine) {\n\(body)\n}"
@@ -42,11 +45,11 @@ public struct Extrude: Geometry3D {
 }
 
 public extension Geometry2D {
-	func extrude(height: Double) -> Extrude {
-		Extrude(height: height, { self })
+	func extrude(height: Double, convexity: Int = 2) -> Extrude {
+		Extrude(height: height, convexity: convexity, { self })
 	}
 
-	func extrude(angle: Double) -> Extrude {
-		Extrude(angle: angle, { self })
+	func extrude(angle: Double, convexity: Int = 2) -> Extrude {
+		Extrude(angle: angle, convexity: convexity, { self })
 	}
 }
