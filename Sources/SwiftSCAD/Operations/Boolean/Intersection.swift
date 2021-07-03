@@ -10,6 +10,10 @@ import Foundation
 struct Intersection3D: Geometry3D {
 	let children: [Geometry3D]
 
+	init(children: [Geometry3D]) {
+		self.children = children
+	}
+
 	init(@ListBuilder _ content: () -> [Geometry3D]) {
 		children = content()
 	}
@@ -29,6 +33,10 @@ public func Intersection(@ListBuilder _ content: () -> [Geometry3D]) -> Geometry
 
 struct Intersection2D: Geometry2D {
 	let children: [Geometry2D]
+
+	init(children: [Geometry2D]) {
+		self.children = children
+	}
 
 	init(@ListBuilder _ content: () -> [Geometry2D]) {
 		children = content()
