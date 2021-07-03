@@ -64,6 +64,13 @@ public extension Angle {
 	}
 }
 
+postfix operator °
+
+public extension Double {
+	static postfix func °(_ a: Double) -> Angle {
+		Angle(degrees: a)
+	}
+}
 
 public func sin(_ angle: Angle) -> Double {
 	sin(angle.radians)
