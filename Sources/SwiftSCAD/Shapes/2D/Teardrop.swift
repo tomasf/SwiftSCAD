@@ -28,10 +28,10 @@ public struct Teardrop: Shape2D {
 			Circle(diameter: diameter)
 			Intersection {
 				Rectangle([diagonal, diagonal])
-					.rotate(-angle.degrees)
+					.rotate(-angle)
 					.translate(x: -x, y: y)
 				Rectangle([diagonal, diagonal])
-					.rotate(angle.degrees + 90)
+					.rotate(angle + 90)
 					.translate(x: x, y: y)
 			}
 		}

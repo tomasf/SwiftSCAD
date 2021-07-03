@@ -15,7 +15,7 @@ struct CrossSection: Shape {
 
 	var body: Geometry3D {
 		let universeLength = 1000.0
-		let rotation: Vector3D
+		let rotation: [Angle]
 
 		switch axis {
 		case .x: rotation = [0, 0, positive ? 0 : 180]

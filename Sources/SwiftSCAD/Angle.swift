@@ -23,6 +23,12 @@ public struct Angle {
 	}
 }
 
+extension Angle {
+	var scadString: String {
+		String(format: "%.06f", degrees)
+	}
+}
+
 extension Angle: ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral {
 	public typealias IntegerLiteralType = Int
 	public typealias FloatLiteralType = Double
@@ -51,6 +57,10 @@ public extension Angle {
 
 	static func >(_ a: Angle, _ b: Angle) -> Bool {
 		a.radians > b.radians
+	}
+
+	static prefix func -(_ a: Angle) -> Angle {
+		Angle(radians: -a.radians)
 	}
 }
 

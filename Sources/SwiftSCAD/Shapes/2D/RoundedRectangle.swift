@@ -70,7 +70,7 @@ public struct RoundedRectangle: Shape2D {
 	}
 
 	private struct Corner: Shape2D {
-		let angleOffset: Double
+		let angleOffset: Angle
 		let radius: Double
 
 		var body: Geometry2D {
