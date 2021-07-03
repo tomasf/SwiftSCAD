@@ -41,6 +41,33 @@ public protocol Geometry2D {
 			return children[0]
 		}
 	}
+
+	static func buildIf(_ children: Geometry2D?...) -> Geometry2D {
+		if children.count > 1 {
+			return Union2D(children: children.compactMap { $0 })
+		} else {
+			return children[0] ?? Empty()
+		}
+	}
+}
+
+@_functionBuilder public struct ListBuilder {
+	public static func buildBlock(_ children: Geometry3D...) -> [Geometry3D] {
+		return children
+	}
+
+	static func buildIf(_ children: Geometry3D?...) -> [Geometry3D] {
+		return children.compactMap { $0 }
+	}
+
+
+	public static func buildBlock(_ children: Geometry2D...) -> [Geometry2D] {
+		return children
+	}
+
+	static func buildIf(_ children: Geometry2D?...) -> [Geometry2D] {
+		return children.compactMap { $0 }
+	}
 }
 
 public extension Sequence {
