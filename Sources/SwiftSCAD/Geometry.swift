@@ -25,7 +25,7 @@ public protocol Geometry2D {
 		}
 	}
 
-	static func buildIf(_ children: Geometry3D?...) -> Geometry3D {
+	public static func buildIf(_ children: Geometry3D?...) -> Geometry3D {
 		if children.count > 1 {
 			return Union3D(children: children.compactMap { $0 })
 		} else {
@@ -42,7 +42,7 @@ public protocol Geometry2D {
 		}
 	}
 
-	static func buildIf(_ children: Geometry2D?...) -> Geometry2D {
+	public static func buildIf(_ children: Geometry2D?...) -> Geometry2D {
 		if children.count > 1 {
 			return Union2D(children: children.compactMap { $0 })
 		} else {
@@ -56,7 +56,7 @@ public protocol Geometry2D {
 		return children
 	}
 
-	static func buildIf(_ children: Geometry3D?...) -> [Geometry3D] {
+	public static func buildIf(_ children: Geometry3D?...) -> [Geometry3D] {
 		return children.compactMap { $0 }
 	}
 
@@ -65,7 +65,7 @@ public protocol Geometry2D {
 		return children
 	}
 
-	static func buildIf(_ children: Geometry2D?...) -> [Geometry2D] {
+	public static func buildIf(_ children: Geometry2D?...) -> [Geometry2D] {
 		return children.compactMap { $0 }
 	}
 }
