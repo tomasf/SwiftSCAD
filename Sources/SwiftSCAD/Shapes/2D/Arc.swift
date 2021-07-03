@@ -8,21 +8,21 @@
 import Foundation
 
 public struct Arc: Geometry2D {
-	public let angles: Range<Double>
+	public let range: Range<Angle>
 	public let radius: Double
 
-	public init(angles: Range<Double>, radius: Double) {
-		self.angles = angles
+	public init(range: Range<Angle>, radius: Double) {
+		self.range = range
 		self.radius = radius
 	}
 
-	public init(angles: Range<Double>, diameter: Double) {
-		self.init(angles: angles, radius: diameter / 2)
+	public init(range: Range<Angle>, diameter: Double) {
+		self.init(range: range, radius: diameter / 2)
 	}
 
 	public func generateOutput(environment: Environment) -> String {
-		let magnitude = angles.upperBound - angles.lowerBound
-		let fraction = magnitude / 360.0
+		let magnitude = range.upperBound - range.lowerBound
+		let fraction = magnitude / 360°
 
 		let circleFacets: Double
 
@@ -41,7 +41,7 @@ public struct Arc: Geometry2D {
 		let facetAngle = magnitude / Double(facetCount)
 
 		let outerPoints = (0...facetCount).map { i -> Vector2D in
-			let angle = (angles.lowerBound + facetAngle * Double(i)) / (180.0 / .pi)
+			let angle = range.lowerBound + facetAngle * Double(i)
 			return Vector2D(x: cos(angle) * radius, y: sin(angle) * radius)
 		}
 		let allPoints = [Vector2D.zero] + outerPoints + [Vector2D.zero]

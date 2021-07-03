@@ -18,7 +18,7 @@ public struct SetFacets: Geometry3D {
 		case .fixed (let count):
 			variables = ["fn": String(count)]
 		case .dynamic (let minAngle, let minSize):
-			variables = ["fa": String(minAngle), "fs": String(minSize), "fn": "0"]
+			variables = ["fa": minAngle.scadString, "fs": String(minSize), "fn": "0"]
 		}
 
 		let varString = variables.map { key, value in
@@ -31,7 +31,7 @@ public struct SetFacets: Geometry3D {
 }
 
 public extension Geometry3D {
-	func withFacets(minAngle: Double, minSize: Double) -> Geometry3D {
+	func withFacets(minAngle: Angle, minSize: Double) -> Geometry3D {
 		SetFacets(facets: .dynamic(minAngle: minAngle, minSize: minSize), body: self)
 	}
 

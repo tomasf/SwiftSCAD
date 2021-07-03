@@ -25,7 +25,7 @@ public struct Angle {
 
 extension Angle {
 	var scadString: String {
-		String(format: "%.06f", degrees)
+		degrees.scadString
 	}
 }
 
@@ -42,24 +42,36 @@ extension Angle: ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral {
 	}
 }
 
-public extension Angle {
-	static func +(_ a: Angle, _ b: Angle) -> Angle {
+extension Angle: Comparable {
+	public static func +(_ a: Angle, _ b: Angle) -> Angle {
 		Angle(radians: a.radians + b.radians)
 	}
 
-	static func -(_ a: Angle, _ b: Angle) -> Angle {
+	public static func -(_ a: Angle, _ b: Angle) -> Angle {
 		Angle(radians: a.radians - b.radians)
 	}
 
-	static func <(_ a: Angle, _ b: Angle) -> Bool {
+	public static func *(_ a: Angle, _ b: Double) -> Angle {
+		Angle(radians: a.radians * b)
+	}
+
+	public static func /(_ a: Angle, _ b: Double) -> Angle {
+		Angle(radians: a.radians / b)
+	}
+
+	public static func /(_ a: Angle, _ b: Angle) -> Double {
+		a.radians / b.radians
+	}
+
+	public static func <(_ a: Angle, _ b: Angle) -> Bool {
 		a.radians < b.radians
 	}
 
-	static func >(_ a: Angle, _ b: Angle) -> Bool {
+	public static func >(_ a: Angle, _ b: Angle) -> Bool {
 		a.radians > b.radians
 	}
 
-	static prefix func -(_ a: Angle) -> Angle {
+	public static prefix func -(_ a: Angle) -> Angle {
 		Angle(radians: -a.radians)
 	}
 }

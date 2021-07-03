@@ -20,7 +20,7 @@ public struct Environment {
 
 	public enum Facets {
 		case fixed (Int)
-		case dynamic (minAngle: Double, minSize: Double)
+		case dynamic (minAngle: Angle, minSize: Double)
 
 		public static let defaults = Facets.dynamic(minAngle: 12, minSize: 2) // According to OpenSCAD docs
 	}

@@ -75,7 +75,7 @@ public struct RoundedRectangle: Shape2D {
 
 		var body: Geometry2D {
 			if radius > .ulpOfOne {
-				return Arc(angles: 0..<90, radius: radius)
+				return Arc(range: 0..<90, radius: radius)
 					.rotate(angleOffset)
 			} else {
 				return Rectangle([0.001, 0.001])

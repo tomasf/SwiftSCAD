@@ -86,3 +86,9 @@ public struct Empty: Geometry3D, Geometry2D {
 		""
 	}
 }
+
+extension Double {
+	var scadString: String {
+		String(format: "%.06f", self)
+	}
+}
