@@ -92,3 +92,9 @@ extension Double {
 		String(format: "%.06f", self)
 	}
 }
+
+extension String {
+	var scadString: String {
+		"\"" + self.replacingOccurrences(of: "\"", with: "\\\"") + "\""
+	}
+}
