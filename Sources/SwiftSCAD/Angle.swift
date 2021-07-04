@@ -95,3 +95,7 @@ public func cos(_ angle: Angle) -> Double {
 public func tan(_ angle: Angle) -> Double {
 	tan(angle.radians)
 }
+
+public func asin(_ input: Double) -> Angle {
+	Angle(radians: asin(input))
+}
