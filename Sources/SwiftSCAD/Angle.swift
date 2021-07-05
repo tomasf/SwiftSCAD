@@ -84,18 +84,20 @@ public extension Double {
 	}
 }
 
-public func sin(_ angle: Angle) -> Double {
-	sin(angle.radians)
-}
+extension Angle {
+	var sin: Double { Darwin.sin(radians) }
+	var cos: Double { Darwin.cos(radians) }
+	var tan: Double { Darwin.tan(radians) }
 
-public func cos(_ angle: Angle) -> Double {
-	cos(angle.radians)
-}
+	static func asin(_ value: Double) -> Angle {
+		Angle(radians: Darwin.asin(value))
+	}
 
-public func tan(_ angle: Angle) -> Double {
-	tan(angle.radians)
-}
+	static func acos(_ value: Double) -> Angle {
+		Angle(radians: Darwin.acos(value))
+	}
 
-public func asin(_ input: Double) -> Angle {
-	Angle(radians: asin(input))
+	static func atan(_ value: Double) -> Angle {
+		Angle(radians: Darwin.atan(value))
+	}
 }

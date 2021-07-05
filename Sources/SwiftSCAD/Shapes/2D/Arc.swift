@@ -42,7 +42,7 @@ public struct Arc: Geometry2D {
 
 		let outerPoints = (0...facetCount).map { i -> Vector2D in
 			let angle = range.lowerBound + facetAngle * Double(i)
-			return Vector2D(x: cos(angle) * radius, y: sin(angle) * radius)
+			return Vector2D(x: angle.cos * radius, y: angle.sin * radius)
 		}
 		let allPoints = [Vector2D.zero] + outerPoints + [Vector2D.zero]
 		return Polygon(allPoints).generateOutput(environment: environment)
