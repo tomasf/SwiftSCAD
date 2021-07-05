@@ -18,7 +18,7 @@ public struct Offset: Geometry2D {
 		self.body = body()
 	}
 
-	public func generateOutput(environment: Environment) -> String {
+	public func scadString(environment: Environment) -> String {
 		let params: String
 
 		switch style {
@@ -30,7 +30,7 @@ public struct Offset: Geometry2D {
 			params = "delta = \(amount), chamfer = true"
 		}
 
-		return "offset(\(params)) \(body.generateOutput(environment: environment))"
+		return "offset(\(params)) \(body.scadString(environment: environment))"
 	}
 
 	public enum Style {

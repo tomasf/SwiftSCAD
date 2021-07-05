@@ -14,7 +14,7 @@ public struct Import3D: Geometry3D {
 		self.path = path
 	}
 
-	public func generateOutput(environment: Environment) -> String {
+	public func scadString(environment: Environment) -> String {
 		"import(\(path.scadString));"
 	}
 }
@@ -26,7 +26,7 @@ public struct Import2D: Geometry2D {
 		self.path = path
 	}
 
-	public func generateOutput(environment: Environment) -> String {
+	public func scadString(environment: Environment) -> String {
 		"import(\(path.scadString));"
 	}
 }

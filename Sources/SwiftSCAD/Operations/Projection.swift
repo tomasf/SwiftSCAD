@@ -11,16 +11,16 @@ struct Projection: Geometry2D {
 	let mode: Mode
 	let body: Geometry3D
 
-	func generateOutput(environment: Environment) -> String {
+	func scadString(environment: Environment) -> String {
 		switch mode {
 		case .whole:
-			let child = body.generateOutput(environment: environment)
+			let child = body.scadString(environment: environment)
 			return "projection() \(child)"
 
 		case .slice (let z):
 			let child = body
 				.translate(z: -z)
-				.generateOutput(environment: environment)
+				.scadString(environment: environment)
 			return "projection(cut = true) \(child)"
 		}
 	}

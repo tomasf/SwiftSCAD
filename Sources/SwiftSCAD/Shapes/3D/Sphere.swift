@@ -18,7 +18,7 @@ public struct Sphere: Geometry3D {
 		self.diameter = radius * 2
 	}
 
-	public func generateOutput(environment: Environment) -> String {
+	public func scadString(environment: Environment) -> String {
 		"sphere(d = \(diameter));"
 	}
 }

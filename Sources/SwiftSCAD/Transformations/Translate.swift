@@ -16,8 +16,8 @@ struct Translate3D: Geometry3D {
 		self.body = body()
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		return "translate(\(distance.scadString)) \(body.generateOutput(environment: environment))"
+	func scadString(environment: Environment) -> String {
+		return "translate(\(distance.scadString)) \(body.scadString(environment: environment))"
 	}
 }
 
@@ -53,8 +53,8 @@ struct Translate2D: Geometry2D {
 		self.init(Vector2D(x: x, y: y), body)
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		return "translate(\(distance.scadString)) \(body.generateOutput(environment: environment))"
+	func scadString(environment: Environment) -> String {
+		return "translate(\(distance.scadString)) \(body.scadString(environment: environment))"
 	}
 }
 

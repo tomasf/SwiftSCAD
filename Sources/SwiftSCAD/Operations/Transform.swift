@@ -53,8 +53,8 @@ struct Transform: Geometry3D {
 	let transform: AffineTransform
 	let body: Geometry3D
 
-	func generateOutput(environment: Environment) -> String {
-		"multmatrix(m = \(transform.scadString)) \(body.generateOutput(environment: environment))"
+	func scadString(environment: Environment) -> String {
+		"multmatrix(m = \(transform.scadString)) \(body.scadString(environment: environment))"
 	}
 }
 

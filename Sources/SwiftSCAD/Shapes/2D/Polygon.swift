@@ -14,7 +14,7 @@ public struct Polygon: Geometry2D {
 		self.points = points
 	}
 
-	public func generateOutput(environment: Environment) -> String {
+	public func scadString(environment: Environment) -> String {
 		return "polygon([\(points.map(\.scadString).joined(separator: ","))]);"
 	}
 }

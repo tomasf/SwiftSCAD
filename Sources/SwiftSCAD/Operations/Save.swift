@@ -18,14 +18,14 @@ fileprivate func saveToFile(string: String, to path: String) {
 
 public extension Geometry3D {
 	@discardableResult func save(to path: String) -> Geometry3D {
-		saveToFile(string: generateOutput(environment: Environment()), to: path)
+		saveToFile(string: scadString(environment: Environment()), to: path)
 		return self
 	}
 }
 
 public extension Geometry2D {
 	@discardableResult func save(to path: String) -> Geometry2D {
-		saveToFile(string: generateOutput(environment: Environment()), to: path)
+		saveToFile(string: scadString(environment: Environment()), to: path)
 		return self
 	}
 }

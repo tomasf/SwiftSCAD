@@ -11,8 +11,8 @@ struct Prefix3D: Geometry3D {
 	let prefix: String
 	let body: Geometry3D
 
-	func generateOutput(environment: Environment) -> String {
-		return prefix + body.generateOutput(environment: environment)
+	func scadString(environment: Environment) -> String {
+		return prefix + body.scadString(environment: environment)
 	}
 }
 
@@ -20,8 +20,8 @@ struct Prefix2D: Geometry2D {
 	let prefix: String
 	let body: Geometry2D
 
-	func generateOutput(environment: Environment) -> String {
-		return prefix + body.generateOutput(environment: environment)
+	func scadString(environment: Environment) -> String {
+		return prefix + body.scadString(environment: environment)
 	}
 }
 

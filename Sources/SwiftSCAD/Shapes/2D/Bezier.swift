@@ -102,7 +102,7 @@ public struct BezierPath: Geometry2D {
 		}.joined()
 	}
 
-	public func generateOutput(environment: Environment) -> String {
+	public func scadString(environment: Environment) -> String {
 		let polygonPoints: [Vector2D]
 		switch environment.facets {
 		case .fixed (let count):
@@ -111,6 +111,6 @@ public struct BezierPath: Geometry2D {
 			polygonPoints = points(maxSegmentLength: minSize)
 		}
 
-		return Polygon(polygonPoints).generateOutput(environment: environment)
+		return Polygon(polygonPoints).scadString(environment: environment)
 	}
 }

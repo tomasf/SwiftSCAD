@@ -14,8 +14,8 @@ struct Hull3D: Geometry3D {
 		self.body = body()
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		"hull() { \(body.generateOutput(environment: environment)) }"
+	func scadString(environment: Environment) -> String {
+		"hull() { \(body.scadString(environment: environment)) }"
 	}
 }
 
@@ -37,8 +37,8 @@ struct Hull2D: Geometry2D {
 		self.body = body()
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		"hull() { \(body.generateOutput(environment: environment)) }"
+	func scadString(environment: Environment) -> String {
+		"hull() { \(body.scadString(environment: environment)) }"
 	}
 }
 

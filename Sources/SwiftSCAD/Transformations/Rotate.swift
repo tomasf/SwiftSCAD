@@ -20,8 +20,8 @@ struct Rotate3D: Geometry3D {
 		self.body = body()
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		return "rotate([\(x.scadString), \(y.scadString), \(z.scadString)]) \(body.generateOutput(environment: environment))"
+	func scadString(environment: Environment) -> String {
+		return "rotate([\(x.scadString), \(y.scadString), \(z.scadString)]) \(body.scadString(environment: environment))"
 	}
 }
 
@@ -54,8 +54,8 @@ struct Rotate2D: Geometry2D {
 		self.body = body()
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		return "rotate(\(angle.scadString)) \(body.generateOutput(environment: environment))"
+	func scadString(environment: Environment) -> String {
+		return "rotate(\(angle.scadString)) \(body.scadString(environment: environment))"
 	}
 }
 

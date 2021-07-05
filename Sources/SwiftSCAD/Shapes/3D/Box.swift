@@ -16,7 +16,7 @@ public struct Box: Geometry3D {
 		self.center = center
 	}
 
-	public func generateOutput(environment: Environment) -> String {
+	public func scadString(environment: Environment) -> String {
 		let cubeExpression = "cube(\(size.scadString));"
 		guard !center.isEmpty else {
 			return cubeExpression

@@ -16,9 +16,9 @@ struct Difference3D: Geometry3D {
 		self.negative = negative
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		let posCode = positive.generateOutput(environment: environment)
-		let negCode = negative.generateOutput(environment: environment)
+	func scadString(environment: Environment) -> String {
+		let posCode = positive.scadString(environment: environment)
+		let negCode = negative.scadString(environment: environment)
 		return "difference() {\n\(posCode)\n\(negCode)\n}"
 	}
 }
@@ -37,9 +37,9 @@ struct Difference2D: Geometry2D {
 		self.negative = negative
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		let posCode = positive.generateOutput(environment: environment)
-		let negCode = negative.generateOutput(environment: environment)
+	func scadString(environment: Environment) -> String {
+		let posCode = positive.scadString(environment: environment)
+		let negCode = negative.scadString(environment: environment)
 		return "difference() {\n\(posCode)\n\(negCode)\n}"
 	}
 }

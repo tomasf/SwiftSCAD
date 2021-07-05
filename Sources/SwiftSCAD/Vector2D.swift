@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Vector2D: ExpressibleByArrayLiteral {
+public struct Vector2D: ExpressibleByArrayLiteral, SCADValue {
 	public let x: Double
 	public let y: Double
 
@@ -27,10 +27,8 @@ public struct Vector2D: ExpressibleByArrayLiteral {
 		self.init(x: arrayLiteral[0], y: arrayLiteral[1])
 	}
 
-	internal var scadString: String {
-		let xString = String(format: "%.06f", x)
-		let yString = String(format: "%.06f", y)
-		return "[\(xString), \(yString)]"
+	public var scadString: String {
+		[x, y].scadString
 	}
 }
 

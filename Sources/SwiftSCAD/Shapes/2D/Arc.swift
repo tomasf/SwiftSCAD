@@ -20,7 +20,7 @@ public struct Arc: Geometry2D {
 		self.init(range: range, radius: diameter / 2)
 	}
 
-	public func generateOutput(environment: Environment) -> String {
+	public func scadString(environment: Environment) -> String {
 		let magnitude = range.upperBound - range.lowerBound
 		let fraction = magnitude / 360°
 
@@ -45,6 +45,6 @@ public struct Arc: Geometry2D {
 			return Vector2D(x: angle.cos * radius, y: angle.sin * radius)
 		}
 		let allPoints = [Vector2D.zero] + outerPoints + [Vector2D.zero]
-		return Polygon(allPoints).generateOutput(environment: environment)
+		return Polygon(allPoints).scadString(environment: environment)
 	}
 }

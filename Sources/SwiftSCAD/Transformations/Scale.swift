@@ -16,8 +16,8 @@ struct Scale3D: Geometry3D {
 		self.body = body()
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		return "scale(\(scale.scadString)) \(body.generateOutput(environment: environment))"
+	func scadString(environment: Environment) -> String {
+		return "scale(\(scale.scadString)) \(body.scadString(environment: environment))"
 	}
 }
 
@@ -61,8 +61,8 @@ struct Scale2D: Geometry2D {
 		self.init(Vector2D(x: x, y: y), body)
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		return "scale(\(scale.scadString)) \(body.generateOutput(environment: environment))"
+	func scadString(environment: Environment) -> String {
+		return "scale(\(scale.scadString)) \(body.scadString(environment: environment))"
 	}
 }
 

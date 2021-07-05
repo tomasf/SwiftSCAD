@@ -7,12 +7,14 @@
 
 import Foundation
 
-public protocol Geometry3D {
-	func generateOutput(environment: Environment) -> String
+public protocol Geometry: SCADFormattable {
+	func scadString(environment: Environment) -> String
 }
 
-public protocol Geometry2D {
-	func generateOutput(environment: Environment) -> String
+public protocol Geometry3D: Geometry {
+}
+
+public protocol Geometry2D: Geometry {
 }
 
 
@@ -82,23 +84,8 @@ public extension Sequence {
 
 public struct Empty: Geometry3D, Geometry2D {
 	public init() {}
-	public func generateOutput(environment: Environment) -> String {
+	public func scadString(environment: Environment) -> String {
 		""
 	}
 }
 
-protocol ScadFormattable {
-	var scadString: String { get }
-}
-
-extension Double: ScadFormattable {
-	var scadString: String {
-		String(format: "%.06f", self)
-	}
-}
-
-extension String: ScadFormattable {
-	var scadString: String {
-		"\"" + self.replacingOccurrences(of: "\"", with: "\\\"") + "\""
-	}
-}

@@ -18,7 +18,7 @@ public struct Circle: Geometry2D {
 		self.diameter = radius * 2
 	}
 
-	public func generateOutput(environment: Environment) -> String {
+	public func scadString(environment: Environment) -> String {
 		return "circle(d = \(diameter));"
 	}
 }

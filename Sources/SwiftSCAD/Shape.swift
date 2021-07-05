@@ -12,8 +12,8 @@ public protocol Shape: Geometry3D {
 }
 
 public extension Shape {
-	func generateOutput(environment: Environment) -> String {
-		body.generateOutput(environment: environment)
+	func scadString(environment: Environment) -> String {
+		body.scadString(environment: environment)
 	}
 }
 
@@ -23,7 +23,7 @@ public protocol Shape2D: Geometry2D {
 }
 
 public extension Shape2D {
-	func generateOutput(environment: Environment) -> String {
-		body.generateOutput(environment: environment)
+	func scadString(environment: Environment) -> String {
+		body.scadString(environment: environment)
 	}
 }

@@ -24,8 +24,8 @@ struct ForEach3D: Geometry3D {
 		}
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		body.generateOutput(environment: environment)
+	func scadString(environment: Environment) -> String {
+		body.scadString(environment: environment)
 	}
 }
 
@@ -46,8 +46,8 @@ struct ForEach2D: Geometry2D {
 		}
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		body.generateOutput(environment: environment)
+	func scadString(environment: Environment) -> String {
+		body.scadString(environment: environment)
 	}
 }
 

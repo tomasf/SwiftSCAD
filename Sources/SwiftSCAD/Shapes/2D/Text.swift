@@ -21,8 +21,8 @@ public struct Text: Geometry2D {
 		self.characterSpacingFactor = spacingFactor
 	}
 
-	public func generateOutput(environment: Environment) -> String {
-		let params: [String: ScadFormattable] = [
+	public func scadString(environment: Environment) -> String {
+		let params: [String: SCADValue] = [
 			"text": text,
 			"size": font.size,
 			"font": font.fontString,
@@ -30,10 +30,9 @@ public struct Text: Geometry2D {
 			"valign": verticalAlignment.rawValue,
 			"spacing": characterSpacingFactor
 		]
-		let paramText = params
-			.sorted(by: { a, b in a.key < b.key })
-			.map { key, value in "\(key)=\(value.scadString)"}.joined(separator: ", ")
-		return "text(\(paramText));"
+
+		return SCADCall(name: "text", params: params, body: nil)
+			.scadString(environment: environment)
 	}
 
 	public struct Font {

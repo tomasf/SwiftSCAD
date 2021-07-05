@@ -18,8 +18,8 @@ struct Intersection3D: Geometry3D {
 		children = content()
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		let childCode = children.map { $0.generateOutput(environment: environment) }
+	func scadString(environment: Environment) -> String {
+		let childCode = children.map { $0.scadString(environment: environment) }
 			.joined()
 
 		return "intersection() {\n\(childCode)\n}"
@@ -42,8 +42,8 @@ struct Intersection2D: Geometry2D {
 		children = content()
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		let childCode = children.map { $0.generateOutput(environment: environment) }
+	func scadString(environment: Environment) -> String {
+		let childCode = children.map { $0.scadString(environment: environment) }
 			.joined()
 
 		return "intersection() {\n\(childCode)\n}"

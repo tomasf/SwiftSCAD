@@ -16,13 +16,14 @@ public struct Rectangle: Geometry2D {
 		self.center = center
 	}
 
-	public func generateOutput(environment: Environment) -> String {
-		let squareExpression = "square(\(size.scadString));"
+	public func scadString(environment: Environment) -> String {
+		let square = SCADCall(name: "square", params: ["size": size], body: nil)
 		guard !center.isEmpty else {
-			return squareExpression
+			return square.scadString(environment: environment)
 		}
 
 		let translation = (size / -2).replace(axes: center.inverted, with: 0)
-		return "translate(\(translation.scadString)) \(squareExpression)"
+		return SCADCall(name: "translate", params: ["v": translation], body: square)
+			.scadString(environment: environment)
 	}
 }

@@ -16,9 +16,9 @@ struct IfPreview3D: Geometry3D {
 		self.renderBody = renderBody
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		let previewCode = previewBody.generateOutput(environment: environment)
-		let renderCode = renderBody.generateOutput(environment: environment)
+	func scadString(environment: Environment) -> String {
+		let previewCode = previewBody.scadString(environment: environment)
+		let renderCode = renderBody.scadString(environment: environment)
 		return "if ($preview) { \(previewCode) } else { \(renderCode) }"
 	}
 }
@@ -41,9 +41,9 @@ struct IfPreview2D: Geometry2D {
 		self.renderBody = renderBody
 	}
 
-	func generateOutput(environment: Environment) -> String {
-		let previewCode = previewBody.generateOutput(environment: environment)
-		let renderCode = renderBody.generateOutput(environment: environment)
+	func scadString(environment: Environment) -> String {
+		let previewCode = previewBody.scadString(environment: environment)
+		let renderCode = renderBody.scadString(environment: environment)
 		return "if ($preview) { \(previewCode) } else { \(renderCode) }"
 	}
 }

@@ -11,7 +11,7 @@ public struct SetFacets: Geometry3D {
 	public let facets: Environment.Facets
 	let body: Geometry3D
 
-	public func generateOutput(environment: Environment) -> String {
+	public func scadString(environment: Environment) -> String {
 		let variables: [String: String]
 
 		switch facets {
@@ -26,7 +26,7 @@ public struct SetFacets: Geometry3D {
 		}.joined()
 
 		let newEnvironment = environment.withFacets(facets)
-		return "union() { \(varString) \(body.generateOutput(environment: newEnvironment)) }"
+		return "union() { \(varString) \(body.scadString(environment: newEnvironment)) }"
 	}
 }
 

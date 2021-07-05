@@ -24,8 +24,8 @@ public struct Extrude: Geometry3D {
 		self.convexity = convexity
 	}
 
-	public func generateOutput(environment: Environment) -> String {
-		let body = children.generateOutput(environment: environment)
+	public func scadString(environment: Environment) -> String {
+		let body = children.scadString(environment: environment)
 		let firstLine: String
 
 		switch extrusion {

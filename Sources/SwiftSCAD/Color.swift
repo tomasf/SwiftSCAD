@@ -160,8 +160,8 @@ struct Color3D: Geometry3D {
 	let color: Color
 	let content: Geometry3D
 
-	func generateOutput(environment: Environment) -> String {
-		let child = content.generateOutput(environment: environment)
+	func scadString(environment: Environment) -> String {
+		let child = content.scadString(environment: environment)
 		switch color {
 		case .components (let red, let green, let blue, let alpha):
 			return String(format: "color([%.03f,%.03f,%.03f,%.03f]) ", red, green, blue, alpha) + child

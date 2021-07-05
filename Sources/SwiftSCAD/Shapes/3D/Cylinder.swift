@@ -30,7 +30,7 @@ public struct Cylinder: Geometry3D {
 		self.height = height
 	}
 
-	public func generateOutput(environment: Environment) -> String {
+	public func scadString(environment: Environment) -> String {
 		if let topDiameter = topDiameter {
 			return "cylinder(d1 = \(diameter), d2 = \(topDiameter), h = \(height));"
 		} else {
