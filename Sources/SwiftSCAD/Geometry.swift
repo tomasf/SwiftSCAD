@@ -87,13 +87,17 @@ public struct Empty: Geometry3D, Geometry2D {
 	}
 }
 
-extension Double {
+protocol ScadFormattable {
+	var scadString: String { get }
+}
+
+extension Double: ScadFormattable {
 	var scadString: String {
 		String(format: "%.06f", self)
 	}
 }
 
-extension String {
+extension String: ScadFormattable {
 	var scadString: String {
 		"\"" + self.replacingOccurrences(of: "\"", with: "\\\"") + "\""
 	}
