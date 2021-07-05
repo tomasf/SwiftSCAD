@@ -42,6 +42,12 @@ public extension Geometry3D {
 	func rotate(x: Angle = 0, y: Angle = 0, z: Angle = 0) -> Geometry3D {
 		Rotate3D(x: x, y: y, z: z, { self })
 	}
+
+	func rotate(angle: Angle, axis: Axis3D) -> Geometry3D {
+		var angles = [0°, 0°, 0°]
+		angles[axis.rawValue] = angle
+		return rotate(angles)
+	}
 }
 
 

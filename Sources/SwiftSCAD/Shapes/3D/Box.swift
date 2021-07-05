@@ -22,7 +22,8 @@ public struct Box: Geometry3D {
 			return cubeExpression
 		}
 
-		let translation = (size / -2).replace(axes: center.inverted, with: 0)
+		let translation = (size / -2)
+			.setting(axes: center.inverted, to: 0)
 		return "translate(\(translation.scadString)) \(cubeExpression)"
 	}
 }

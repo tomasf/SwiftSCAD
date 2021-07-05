@@ -71,8 +71,44 @@ extension Angle: Comparable {
 		a.radians > b.radians
 	}
 
+	public static func ==(_ a: Angle, _ b: Angle) -> Bool {
+		a.radians == b.radians
+	}
+
 	public static prefix func -(_ a: Angle) -> Angle {
 		Angle(radians: -a.radians)
+	}
+}
+
+extension Angle: SignedNumeric {
+	public init?<T>(exactly source: T) where T : BinaryInteger {
+		self.init(radians: Double(source))
+	}
+
+	public var magnitude: Angle {
+		Angle(radians: fabs(radians))
+	}
+
+	public static func *= (lhs: inout Angle, rhs: Angle) {
+		lhs = lhs * rhs
+	}
+
+	public typealias Magnitude = Angle
+
+	public static func *(_ a: Angle, _ b: Angle) -> Angle {
+		Angle(radians: a.radians * b.radians)
+	}
+}
+
+extension Angle: Strideable {
+	public typealias Stride = Angle
+
+	public func advanced(by n: Angle) -> Angle {
+		self + n
+	}
+
+	public func distance(to other: Angle) -> Angle {
+		other - self
 	}
 }
 

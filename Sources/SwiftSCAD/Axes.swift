@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum Axis3D {
+public enum Axis3D: Int {
 	case x
 	case y
 	case z
@@ -26,6 +26,10 @@ public struct Axes3D: OptionSet {
 		self.rawValue = rawValue
 	}
 
+	public init(axis: Axis3D) {
+		self.init(rawValue: 1 << axis.rawValue)
+	}
+
 	public var inverted: Axes3D {
 		Axes3D(rawValue: (~rawValue) & 0x7)
 	}
@@ -40,6 +44,11 @@ extension Axes3D: ExpressibleByBooleanLiteral {
 }
 
 
+public enum Axis2D: Int {
+	case x
+	case y
+}
+
 public struct Axes2D: OptionSet {
 	public let rawValue: Int
 	public static let x = Axes2D(rawValue: 1 << 0)
@@ -50,6 +59,10 @@ public struct Axes2D: OptionSet {
 
 	public init(rawValue: Int) {
 		self.rawValue = rawValue
+	}
+
+	public init(axis: Axis2D) {
+		self.init(rawValue: 1 << axis.rawValue)
 	}
 
 	public var inverted: Axes2D {

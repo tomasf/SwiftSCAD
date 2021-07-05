@@ -30,6 +30,13 @@ public struct Vector2D: ExpressibleByArrayLiteral, SCADValue {
 	public var scadString: String {
 		[x, y].scadString
 	}
+
+	func setting(axes: Axes2D, to value: Double) -> Vector2D {
+		Vector2D(
+			x: axes.contains(.x) ? value : x,
+			y: axes.contains(.y) ? value : y
+		)
+	}
 }
 
 

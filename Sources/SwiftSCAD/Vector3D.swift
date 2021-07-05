@@ -92,11 +92,11 @@ public extension Vector3D {
 		)
 	}
 
-	func replace(axes: Axes3D, with replacement: Double) -> Vector3D {
+	func setting(axes: Axes3D, to value: Double) -> Vector3D {
 		Vector3D(
-			x: axes.contains(.x) ? replacement : x,
-			y: axes.contains(.y) ? replacement : y,
-			z: axes.contains(.z) ? replacement : z
+			x: axes.contains(.x) ? value : x,
+			y: axes.contains(.y) ? value : y,
+			z: axes.contains(.z) ? value : z
 		)
 	}
 
