@@ -15,7 +15,7 @@ struct Rotate3D: Geometry3D {
 
 	func scadString(environment: Environment) -> String {
 		return SCADCall(
-			name: "scale",
+			name: "rotate",
 			params: ["a": [x, y, z]],
 			body: body
 		)
@@ -47,7 +47,7 @@ struct Rotate2D: Geometry2D {
 
 	func scadString(environment: Environment) -> String {
 		return SCADCall(
-			name: "scale",
+			name: "rotate",
 			params: ["a": angle],
 			body: body
 		)
