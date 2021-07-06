@@ -8,15 +8,9 @@
 import Foundation
 
 public struct Offset: Geometry2D {
-	let body: Geometry2D
 	let amount: Double
 	let style: Style
-
-	public init(amount: Double, style: Style, @UnionBuilder body: () -> Geometry2D) {
-		self.amount = amount
-		self.style = style
-		self.body = body()
-	}
+	let body: Geometry2D
 
 	public func scadString(environment: Environment) -> String {
 		let params: String
@@ -48,7 +42,7 @@ public struct Offset: Geometry2D {
 
 public extension Geometry2D {
 	func offset(amount: Double, style: Offset.Style) -> Geometry2D {
-		Offset(amount: amount, style: style) { self }
+		Offset(amount: amount, style: style, body: self)
 	}
 
 	func rounded(amount: Double, side: Offset.Side = .both) -> Geometry2D {

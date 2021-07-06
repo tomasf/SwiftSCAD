@@ -29,6 +29,12 @@ extension Double: SCADValue {
 	}
 }
 
+extension Int: SCADValue {
+	public var scadString: String {
+		String(self)
+	}
+}
+
 extension String: SCADValue {
 	public var scadString: String {
 		"\"" + self.replacingOccurrences(of: "\"", with: "\\\"") + "\""

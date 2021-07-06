@@ -8,34 +8,42 @@
 import Foundation
 
 struct Extrude: Geometry3D {
-	let children: Geometry2D
+	let body: Geometry2D
 	let extrusion: Extrusion
 	let convexity: Int
 
-	public init(height: Double, convexity: Int = 2, @UnionBuilder _ body: () -> Geometry2D) {
-		self.children = body()
-		self.extrusion = .linear(height: height)
+	init(_ extrusion: Extrusion, convexity: Int, body: Geometry2D) {
+		self.body = body
+		self.extrusion = extrusion
 		self.convexity = convexity
 	}
 
-	public init(angle: Angle, convexity: Int = 2, @UnionBuilder _ body: () -> Geometry2D) {
-		self.children = body()
-		self.extrusion = .rotational(angle: angle)
-		self.convexity = convexity
-	}
-
-	public func scadString(environment: Environment) -> String {
-		let body = children.scadString(environment: environment)
-		let firstLine: String
+	func scadString(environment: Environment) -> String {
+		let call: SCADCall
 
 		switch extrusion {
 		case .linear (let height):
-			firstLine = "linear_extrude(height = \(height.scadString), convexity = \(convexity))"
+			call = SCADCall(
+				name: "linear_extrude",
+				params: [
+					"height": height,
+					"convexity": convexity
+				],
+				body: body
+			)
+
 		case .rotational (let angle):
-			firstLine = "rotate_extrude(angle = \(angle.scadString), convexity = \(convexity))"
+			call = SCADCall(
+				name: "rotate_extrude",
+				params: [
+					"angle": angle,
+					"convexity": convexity
+				],
+				body: body
+			)
 		}
 
-		return "\(firstLine) {\n\(body)\n}"
+		return call.scadString(environment: environment)
 	}
 
 	enum Extrusion {
@@ -46,10 +54,10 @@ struct Extrude: Geometry3D {
 
 public extension Geometry2D {
 	func extrude(height: Double, convexity: Int = 2) -> Geometry3D {
-		Extrude(height: height, convexity: convexity, { self })
+		Extrude(.linear(height: height), convexity: convexity, body: self)
 	}
 
 	func extrude(angle: Angle, convexity: Int = 2) -> Geometry3D {
-		Extrude(angle: angle, convexity: convexity, { self })
+		Extrude(.rotational(angle: angle), convexity: convexity, body: self)
 	}
 }

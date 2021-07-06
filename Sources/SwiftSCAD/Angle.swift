@@ -23,8 +23,8 @@ public struct Angle {
 	}
 }
 
-extension Angle {
-	var scadString: String {
+extension Angle: SCADValue {
+	public var scadString: String {
 		degrees.scadString
 	}
 }
