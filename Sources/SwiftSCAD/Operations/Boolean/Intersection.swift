@@ -16,7 +16,7 @@ struct Intersection3D: Geometry3D {
 	}
 }
 
-public func Intersection(@ListBuilder _ content: () -> [Geometry3D]) -> Geometry3D {
+public func Intersection(@SequenceBuilder _ content: () -> [Geometry3D]) -> Geometry3D {
 	Intersection3D(children: content())
 }
 
@@ -36,7 +36,7 @@ struct Intersection2D: Geometry2D {
 	}
 }
 
-public func Intersection(@ListBuilder _ content: () -> [Geometry2D]) -> Geometry2D {
+public func Intersection(@SequenceBuilder _ content: () -> [Geometry2D]) -> Geometry2D {
 	Intersection2D(children: content())
 }
 

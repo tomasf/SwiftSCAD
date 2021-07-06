@@ -7,7 +7,7 @@
 
 import Foundation
 
-@_functionBuilder public struct ListBuilder {
+@_functionBuilder public struct SequenceBuilder {
 	public static func buildBlock(_ children: Geometry3D...) -> [Geometry3D] {
 		return children
 	}
