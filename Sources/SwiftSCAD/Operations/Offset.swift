@@ -13,18 +13,19 @@ public struct Offset: Geometry2D {
 	let body: Geometry2D
 
 	public func scadString(environment: Environment) -> String {
-		let params: String
+		let params: [String: SCADValue]
 
 		switch style {
 		case .round:
-			params = "r = \(amount)"
+			params = ["r": amount]
 		case .miter:
-			params = "delta = \(amount)"
+			params = ["delta": amount]
 		case .bevel:
-			params = "delta = \(amount), chamfer = true"
+			params = ["delta": amount, "chamfer": true]
 		}
 
-		return "offset(\(params)) \(body.scadString(environment: environment))"
+		return SCADCall(name: "offset", params: params, body: body)
+			.scadString(environment: environment)
 	}
 
 	public enum Style {

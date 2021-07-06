@@ -19,6 +19,10 @@ public struct Circle: Geometry2D {
 	}
 
 	public func scadString(environment: Environment) -> String {
-		return "circle(d = \(diameter));"
+		SCADCall(
+			name: "circle",
+			params: ["d": diameter]
+		)
+		.scadString(environment: environment)
 	}
 }

@@ -15,7 +15,11 @@ public struct Import3D: Geometry3D {
 	}
 
 	public func scadString(environment: Environment) -> String {
-		"import(\(path.scadString));"
+		SCADCall(
+			name: "import",
+			params: ["file": path]
+		)
+		.scadString(environment: environment)
 	}
 }
 
@@ -27,6 +31,10 @@ public struct Import2D: Geometry2D {
 	}
 
 	public func scadString(environment: Environment) -> String {
-		"import(\(path.scadString));"
+		SCADCall(
+			name: "import",
+			params: ["file": path]
+		)
+		.scadString(environment: environment)
 	}
 }

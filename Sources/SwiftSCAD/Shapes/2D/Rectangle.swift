@@ -17,13 +17,20 @@ public struct Rectangle: Geometry2D {
 	}
 
 	public func scadString(environment: Environment) -> String {
-		let square = SCADCall(name: "square", params: ["size": size], body: nil)
+		let square = SCADCall(
+			name: "square",
+			params: ["size": size]
+		)
+
 		guard !center.isEmpty else {
 			return square.scadString(environment: environment)
 		}
 
-		let translation = (size / -2).replace(axes: center.inverted, with: 0)
-		return SCADCall(name: "translate", params: ["v": translation], body: square)
-			.scadString(environment: environment)
+		return SCADCall(
+			name: "translate",
+			params: ["v": (size / -2).setting(axes: center.inverted, to: 0)],
+			body: square
+		)
+		.scadString(environment: environment)
 	}
 }

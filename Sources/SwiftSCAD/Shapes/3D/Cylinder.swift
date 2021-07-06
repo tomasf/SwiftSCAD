@@ -31,10 +31,15 @@ public struct Cylinder: Geometry3D {
 	}
 
 	public func scadString(environment: Environment) -> String {
+		let params: [String: SCADValue]
+
 		if let topDiameter = topDiameter {
-			return "cylinder(d1 = \(diameter), d2 = \(topDiameter), h = \(height));"
+			params = ["d1": diameter, "d2": topDiameter, "h": height]
 		} else {
-			return "cylinder(d = \(diameter), h = \(height));"
+			params = ["d": diameter, "h": height]
 		}
+
+		return SCADCall(name: "cylinder", params: params)
+			.scadString(environment: environment)
 	}
 }

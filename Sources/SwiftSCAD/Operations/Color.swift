@@ -161,13 +161,19 @@ struct Color3D: Geometry3D {
 	let content: Geometry3D
 
 	func scadString(environment: Environment) -> String {
-		let child = content.scadString(environment: environment)
+		let params: [String: SCADValue]
+
 		switch color {
 		case .components (let red, let green, let blue, let alpha):
-			return String(format: "color([%.03f,%.03f,%.03f,%.03f]) ", red, green, blue, alpha) + child
+			params = ["c": [red, green, blue, alpha]]
+
 		case .named (let name, let alpha):
-			return String(format: "color(\"%@\", %.02f) ", name.rawValue, alpha) + child
+			params = ["c": name.rawValue, "alpha": alpha]
 		}
+
+		return SCADCall(name: "color", params: params, body: content)
+			.scadString(environment: environment)
+
 	}
 }
 

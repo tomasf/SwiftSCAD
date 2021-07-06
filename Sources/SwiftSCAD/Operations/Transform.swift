@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AffineTransform {
+public struct AffineTransform: SCADValue {
 	public var values: [[Double]]
 
 	public init(_ values: [[Double]]) {
@@ -18,15 +18,8 @@ public struct AffineTransform {
 		self.values = values
 	}
 
-	var scadString: String {
-		"[" + values.map { row in
-			"[" + row
-				.map(\.scadString)
-				.joined(separator: ",")
-			+ "]"
-		}
-		.joined(separator: ",")
-		+ "]"
+	public var scadString: String {
+		values.scadString
 	}
 
 	public static var identity: AffineTransform {
@@ -54,7 +47,12 @@ struct Transform: Geometry3D {
 	let body: Geometry3D
 
 	func scadString(environment: Environment) -> String {
-		"multmatrix(m = \(transform.scadString)) \(body.scadString(environment: environment))"
+		SCADCall(
+			name: "multmatrix",
+			params: ["m": transform],
+			body: body
+		)
+		.scadString(environment: environment)
 	}
 }
 
@@ -64,10 +62,11 @@ public extension Geometry3D {
 	}
 
 	func shear(_ axis: Axis3D, along otherAxis: Axis3D, factor: Double) -> Geometry3D {
-		precondition(axis != otherAxis, "Shearing requires two different axes")
-		let axes: [Axis3D] = [.x, .y, .z]
-		let row = axes.firstIndex(of: axis)!
-		let column = axes.firstIndex(of: otherAxis)!
+		precondition(axis != otherAxis, "Shearing requires two distinct axes")
+
+		let order: [Axis3D] = [.x, .y, .z]
+		let row = order.firstIndex(of: axis)!
+		let column = order.firstIndex(of: otherAxis)!
 
 		var t = AffineTransform.identity
 		t[row, column] = factor

@@ -14,14 +14,19 @@ struct Projection: Geometry2D {
 	func scadString(environment: Environment) -> String {
 		switch mode {
 		case .whole:
-			let child = body.scadString(environment: environment)
-			return "projection() \(child)"
+			return SCADCall(
+				name: "projection",
+				body: body
+			)
+			.scadString(environment: environment)
 
 		case .slice (let z):
-			let child = body
-				.translate(z: -z)
-				.scadString(environment: environment)
-			return "projection(cut = true) \(child)"
+			return SCADCall(
+				name: "projection",
+				params: ["cut": true],
+				body: body.translate(z: -z)
+			)
+			.scadString(environment: environment)
 		}
 	}
 

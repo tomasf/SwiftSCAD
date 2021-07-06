@@ -11,7 +11,8 @@ struct ConvexHull3D: Geometry3D {
 	let body: Geometry3D
 
 	func scadString(environment: Environment) -> String {
-		"hull() { \(body.scadString(environment: environment)) }"
+		SCADCall(name: "hull", body: body)
+			.scadString(environment: environment)
 	}
 }
 
@@ -26,7 +27,8 @@ struct ConvexHull2D: Geometry2D {
 	let body: Geometry2D
 
 	func scadString(environment: Environment) -> String {
-		"hull() { \(body.scadString(environment: environment)) }"
+		SCADCall(name: "hull", body: body)
+			.scadString(environment: environment)
 	}
 }
 

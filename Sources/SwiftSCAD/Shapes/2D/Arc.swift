@@ -45,6 +45,8 @@ public struct Arc: Geometry2D {
 			return Vector2D(x: angle.cos * radius, y: angle.sin * radius)
 		}
 		let allPoints = [Vector2D.zero] + outerPoints + [Vector2D.zero]
-		return Polygon(allPoints).scadString(environment: environment)
+
+		return Polygon(allPoints)
+			.scadString(environment: environment)
 	}
 }

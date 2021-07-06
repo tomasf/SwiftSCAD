@@ -15,8 +15,8 @@ struct Union3D: Geometry3D {
 	}
 
 	func scadString(environment: Environment) -> String {
-		let body = children.map { $0.scadString(environment: environment) }.joined(separator: "\n")
-		return "union() {\n\(body)\n}"
+		SCADCall(name: "union", body: GeometrySequence(children: children))
+			.scadString(environment: environment)
 	}
 }
 
@@ -33,8 +33,8 @@ struct Union2D: Geometry2D {
 	}
 
 	func scadString(environment: Environment) -> String {
-		let body = children.map { $0.scadString(environment: environment) }.joined(separator: "\n")
-		return "union() {\n\(body)\n}"
+		SCADCall(name: "union", body: GeometrySequence(children: children))
+			.scadString(environment: environment)
 	}
 }
 

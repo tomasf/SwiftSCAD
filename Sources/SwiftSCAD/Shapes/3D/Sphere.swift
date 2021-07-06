@@ -19,6 +19,7 @@ public struct Sphere: Geometry3D {
 	}
 
 	public func scadString(environment: Environment) -> String {
-		"sphere(d = \(diameter));"
+		return SCADCall(name: "sphere", params: ["d": diameter])
+			.scadString(environment: environment)
 	}
 }

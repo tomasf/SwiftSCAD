@@ -31,7 +31,7 @@ public struct Text: Geometry2D {
 			"spacing": characterSpacingFactor
 		]
 
-		return SCADCall(name: "text", params: params, body: nil)
+		return SCADCall(name: "text", params: params)
 			.scadString(environment: environment)
 	}
 

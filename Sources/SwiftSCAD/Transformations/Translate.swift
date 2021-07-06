@@ -11,31 +11,23 @@ struct Translate3D: Geometry3D {
 	let distance: Vector3D
 	let body: Geometry3D
 
-	init(_ distance: Vector3D, @UnionBuilder _ body: () -> Geometry3D) {
-		self.distance = distance
-		self.body = body()
-	}
-
 	func scadString(environment: Environment) -> String {
-		return "translate(\(distance.scadString)) \(body.scadString(environment: environment))"
+		SCADCall(
+			name: "translate",
+			params: ["v": distance],
+			body: body
+		)
+		.scadString(environment: environment)
 	}
-}
-
-public func Translate(_ distance: Vector3D, @UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
-	Translate3D(distance, body)
-}
-
-public func Translate(x: Double = 0, y: Double = 0, z: Double = 0, @UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {
-	Translate3D(Vector3D(x: x, y: y, z: z), body)
 }
 
 public extension Geometry3D {
 	func translate(_ distance: Vector3D) -> Geometry3D {
-		Translate3D(distance) { self }
+		Translate3D(distance: distance, body: self)
 	}
 
 	func translate(x: Double = 0, y: Double = 0, z: Double = 0) -> Geometry3D {
-		Translate3D(Vector3D(x: x, y: y, z: z)) { self }
+		Translate3D(distance: [x, y, z], body: self)
 	}
 }
 
@@ -44,34 +36,22 @@ struct Translate2D: Geometry2D {
 	let distance: Vector2D
 	let body: Geometry2D
 
-	init(_ distance: Vector2D, @UnionBuilder _ body: () -> Geometry2D) {
-		self.distance = distance
-		self.body = body()
-	}
-
-	init(x: Double = 0, y: Double = 0, @UnionBuilder _ body: () -> Geometry2D) {
-		self.init(Vector2D(x: x, y: y), body)
-	}
-
 	func scadString(environment: Environment) -> String {
-		return "translate(\(distance.scadString)) \(body.scadString(environment: environment))"
+		SCADCall(
+			name: "translate",
+			params: ["v": distance],
+			body: body
+		)
+		.scadString(environment: environment)
 	}
-}
-
-public func Translate(_ distance: Vector2D, @UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
-	Translate2D(distance, body)
-}
-
-public func Translate(x: Double = 0, y: Double = 0, @UnionBuilder _ body: () -> Geometry2D) -> Geometry2D {
-	Translate2D(Vector2D(x: x, y: y), body)
 }
 
 public extension Geometry2D {
 	func translate(_ distance: Vector2D) -> Geometry2D {
-		Translate2D(distance) { self }
+		Translate2D(distance: distance, body: self)
 	}
 
 	func translate(x: Double = 0, y: Double = 0) -> Geometry2D {
-		Translate2D(Vector2D(x: x, y: y)) { self }
+		Translate2D(distance: [x, y], body: self)
 	}
 }

@@ -15,6 +15,10 @@ public struct Polygon: Geometry2D {
 	}
 
 	public func scadString(environment: Environment) -> String {
-		return "polygon([\(points.map(\.scadString).joined(separator: ","))]);"
+		return SCADCall(
+			name: "polygon",
+			params: ["points": points]
+		)
+		.scadString(environment: environment)
 	}
 }

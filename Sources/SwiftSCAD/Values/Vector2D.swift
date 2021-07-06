@@ -97,13 +97,6 @@ public extension Vector2D {
 			y: v.y - s
 		)
 	}
-
-	func replace(axes: Axes2D, with replacement: Double) -> Vector2D {
-		Vector2D(
-			x: axes.contains(.x) ? replacement : x,
-			y: axes.contains(.y) ? replacement : y
-		)
-	}
 }
 
 struct LineSegment {

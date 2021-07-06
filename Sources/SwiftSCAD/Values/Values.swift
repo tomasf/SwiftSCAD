@@ -22,7 +22,6 @@ public extension SCADValue {
 }
 
 
-
 extension Double: SCADValue {
 	public var scadString: String {
 		String(format: "%.06f", self)
@@ -30,6 +29,12 @@ extension Double: SCADValue {
 }
 
 extension Int: SCADValue {
+	public var scadString: String {
+		String(self)
+	}
+}
+
+extension Bool: SCADValue {
 	public var scadString: String {
 		String(self)
 	}
@@ -53,6 +58,7 @@ extension Array: SCADValue where Element: SCADValue {
 	}
 }
 
+
 // A OpenSCAD call to a function or module
 
 struct SCADCall: SCADFormattable {
@@ -60,11 +66,25 @@ struct SCADCall: SCADFormattable {
 	let params: [String: SCADValue]
 	let body: SCADFormattable?
 
+	init(name: String, params: [String: SCADValue] = [:], body: SCADFormattable? = nil) {
+		self.name = name
+		self.params = params
+		self.body = body
+	}
+
 	func scadString(environment: Environment) -> String {
 		let paramText = params
 			.sorted(by: { a, b in a.key < b.key })
 			.map { key, value in "\(key)=\(value.scadString)"}.joined(separator: ", ")
 
 		return "\(name)(\(paramText)) \(body?.scadString(environment: environment) ?? ";")"
+	}
+}
+
+struct GeometrySequence: Geometry {
+	let children: [Geometry]
+
+	func scadString(environment: Environment) -> String {
+		"{" + children.map { $0.scadString(environment: environment) }.joined(separator: "\n") + "}"
 	}
 }

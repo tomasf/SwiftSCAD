@@ -111,6 +111,7 @@ public struct BezierPath: Geometry2D {
 			polygonPoints = points(maxSegmentLength: minSize)
 		}
 
-		return Polygon(polygonPoints).scadString(environment: environment)
+		return Polygon(polygonPoints)
+			.scadString(environment: environment)
 	}
 }

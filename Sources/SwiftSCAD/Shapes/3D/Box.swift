@@ -17,13 +17,21 @@ public struct Box: Geometry3D {
 	}
 
 	public func scadString(environment: Environment) -> String {
-		let cubeExpression = "cube(\(size.scadString));"
+		let cube = SCADCall(
+			name: "cube",
+			params: ["size": size],
+			body: nil
+		)
+
 		guard !center.isEmpty else {
-			return cubeExpression
+			return cube.scadString(environment: environment)
 		}
 
-		let translation = (size / -2)
-			.setting(axes: center.inverted, to: 0)
-		return "translate(\(translation.scadString)) \(cubeExpression)"
+		return SCADCall(
+			name: "translate",
+			params: ["v": (size / -2).setting(axes: center.inverted, to: 0)],
+			body: cube
+		)
+		.scadString(environment: environment)
 	}
 }
