@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Extrude: Geometry3D {
+struct Extrude: Geometry3D {
 	let children: Geometry2D
 	let extrusion: Extrusion
 	let convexity: Int
@@ -45,11 +45,11 @@ public struct Extrude: Geometry3D {
 }
 
 public extension Geometry2D {
-	func extrude(height: Double, convexity: Int = 2) -> Extrude {
+	func extrude(height: Double, convexity: Int = 2) -> Geometry3D {
 		Extrude(height: height, convexity: convexity, { self })
 	}
 
-	func extrude(angle: Angle, convexity: Int = 2) -> Extrude {
+	func extrude(angle: Angle, convexity: Int = 2) -> Geometry3D {
 		Extrude(angle: angle, convexity: convexity, { self })
 	}
 }
