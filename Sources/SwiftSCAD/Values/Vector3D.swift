@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Vector3D: ExpressibleByArrayLiteral, SCADValue {
+public struct Vector3D: ExpressibleByArrayLiteral, SCADValue, Equatable {
 	public let x: Double
 	public let y: Double
 	public let z: Double
@@ -33,7 +33,6 @@ public struct Vector3D: ExpressibleByArrayLiteral, SCADValue {
 		[x, y, z].scadString
 	}
 }
-
 
 public extension Vector3D {
 	static func /(_ v: Vector3D, _ d: Double) -> Vector3D {
