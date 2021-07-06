@@ -27,6 +27,12 @@ public func Difference(@UnionBuilder _ positive: () -> Geometry3D, @UnionBuilder
 	Difference3D(positive: positive(), negative: negative())
 }
 
+public extension Geometry3D {
+	func subtracting(@UnionBuilder _ negative: () -> Geometry3D) -> Geometry3D {
+		Difference3D(positive: self, negative: negative())
+	}
+}
+
 
 struct Difference2D: Geometry2D {
 	let positive: Geometry2D
@@ -46,4 +52,10 @@ struct Difference2D: Geometry2D {
 
 public func Difference(@UnionBuilder _ positive: () -> Geometry2D, @UnionBuilder subtracting negative: () -> Geometry2D) -> Geometry2D {
 	Difference2D(positive: positive(), negative: negative())
+}
+
+public extension Geometry2D {
+	func subtracting(@UnionBuilder _ negative: () -> Geometry2D) -> Geometry2D {
+		Difference2D(positive: self, negative: negative())
+	}
 }
