@@ -37,6 +37,12 @@ extension Geometry3D {
 			self.rotate(angle: value, axis: axis)
 		}
 	}
+
+	public func distibute(along axis: Axis3D, translations: [Double]) -> Geometry3D {
+		ForEach(translations) { offset in
+			self.translate(Vector3D.zero.setting(axes: Axes3D(axis: axis), to: offset))
+		}
+	}
 }
 
 
