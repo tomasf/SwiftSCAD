@@ -106,15 +106,16 @@ public extension Vector2D {
 	}
 }
 
-struct LineSegment {
-	let p1: Vector2D
-	let p2: Vector2D
-
-	func point(at fraction: Double) -> Vector2D {
-		p1 + (p2 - p1) * fraction
+public extension Vector2D {
+	func distance(to other: Vector2D) -> Double {
+		sqrt(pow(x - other.x, 2) + pow(y - other.y, 2))
 	}
 
-	var length: Double {
-		sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2))
+	func angle(to other: Vector2D) -> Angle {
+		Angle(radians: atan2(other.y - y, other.x - x))
+	}
+
+	func point(alongLineTo other: Vector2D, at fraction: Double) -> Vector2D {
+		self + (other - self) * fraction
 	}
 }

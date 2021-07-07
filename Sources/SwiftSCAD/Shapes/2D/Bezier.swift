@@ -19,7 +19,7 @@ struct BezierCurve {
 		var workingPoints = self.points
 		while workingPoints.count > 1 {
 			workingPoints = workingPoints.paired().map { p1, p2 in
-				LineSegment(p1: p1, p2: p2).point(at: fraction)
+				p1.point(alongLineTo: p2, at: fraction)
 			}
 		}
 		return workingPoints[0]
@@ -31,8 +31,8 @@ struct BezierCurve {
 		let midFraction = (range.lowerBound + range.upperBound) / 2
 		let midPoint = point(at: midFraction)
 
-		let distance1 = LineSegment(p1: startPoint, p2: midPoint).length
-		let distance2 = LineSegment(p1: midPoint, p2: endPoint).length
+		let distance1 = startPoint.distance(to: midPoint)
+		let distance2 = midPoint.distance(to: endPoint)
 		guard distance1 > maxSegmentLength && distance2 > maxSegmentLength else {
 			return []
 		}

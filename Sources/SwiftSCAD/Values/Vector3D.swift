@@ -112,3 +112,14 @@ public extension Vector3D {
 		Vector2D(x:x, y:y)
 	}
 }
+
+
+public extension Vector3D {
+	func distance(to other: Vector3D) -> Double {
+		sqrt(pow(x - other.x, 2) + pow(y - other.y, 2))
+	}
+
+	func point(alongLineTo other: Vector3D, at fraction: Double) -> Vector3D {
+		self + (other - self) * fraction
+	}
+}
