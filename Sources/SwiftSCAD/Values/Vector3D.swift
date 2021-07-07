@@ -35,6 +35,15 @@ public struct Vector3D: ExpressibleByArrayLiteral, SCADValue, Equatable {
 }
 
 public extension Vector3D {
+	init(axis: Axis3D, value: Double) {
+		let x = (axis == .x) ? value : 0
+		let y = (axis == .y) ? value : 0
+		let z = (axis == .z) ? value : 0
+		self.init(x, y, z)
+	}
+}
+
+public extension Vector3D {
 	static func /(_ v: Vector3D, _ d: Double) -> Vector3D {
 		return Vector3D(
 			x: v.x / d,

@@ -30,6 +30,14 @@ public struct Vector2D: ExpressibleByArrayLiteral, SCADValue {
 	public var scadString: String {
 		[x, y].scadString
 	}
+}
+
+public extension Vector2D {
+	init(axis: Axis2D, value: Double) {
+		let x = (axis == .x) ? value : 0
+		let y = (axis == .y) ? value : 0
+		self.init(x, y)
+	}
 
 	func setting(axes: Axes2D, to value: Double) -> Vector2D {
 		Vector2D(
@@ -38,7 +46,6 @@ public struct Vector2D: ExpressibleByArrayLiteral, SCADValue {
 		)
 	}
 }
-
 
 public extension Vector2D {
 	static func /(_ v: Vector2D, _ d: Double) -> Vector2D {
