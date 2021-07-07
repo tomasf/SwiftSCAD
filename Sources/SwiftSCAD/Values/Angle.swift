@@ -29,6 +29,12 @@ extension Angle: SCADValue {
 	}
 }
 
+extension Angle: CustomDebugStringConvertible {
+	public var debugDescription: String {
+		"\(degrees)°"
+	}
+}
+
 extension Angle: ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral {
 	public typealias IntegerLiteralType = Int
 	public typealias FloatLiteralType = Double
