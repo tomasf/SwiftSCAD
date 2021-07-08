@@ -7,19 +7,15 @@
 
 import Foundation
 
-public struct AffineTransform: SCADValue {
+public struct AffineTransform {
 	public var values: [[Double]]
 
 	public init(_ values: [[Double]]) {
 		precondition(
 			values.count == 4 && values.allSatisfy { $0.count == 4},
-			"AffineTransform requires 16 (4x4) elements"
+			"AffineTransform requires 16 (4 x 4) elements"
 		)
 		self.values = values
-	}
-
-	public var scadString: String {
-		values.scadString
 	}
 
 	public static var identity: AffineTransform {
@@ -31,6 +27,75 @@ public struct AffineTransform: SCADValue {
 		])
 	}
 
+	public static func translate(x: Double = 0, y: Double = 0, z: Double = 0) -> AffineTransform {
+		var transform = identity
+		transform[0, 3] = x
+		transform[1, 3] = y
+		transform[2, 3] = z
+		return transform
+	}
+
+	public static func translate(_ v: Vector3D) -> AffineTransform {
+		translate(x: v.x, y: v.y, z: v.z)
+	}
+
+	public static func scale(x: Double = 1, y: Double = 1, z: Double = 1) -> AffineTransform {
+		var transform = identity
+		transform[0, 0] = x
+		transform[1, 1] = y
+		transform[2, 2] = z
+		return transform
+	}
+
+	public static func scale(_ v: Vector3D) -> AffineTransform {
+		scale(x: v.x, y: v.y, z: v.z)
+	}
+
+	public static func rotate(x: Angle = 0, y: Angle = 0, z: Angle = 0) -> AffineTransform {
+		var transform = identity
+		transform[0, 0] = y.cos * z.cos
+		transform[0, 1] = -z.sin
+		transform[0, 2] = y.sin
+
+		transform[1, 0] = z.sin
+		transform[1, 1] = x.cos * z.cos
+		transform[1, 2] = -x.sin
+
+		transform[2, 0] = -y.sin
+		transform[2, 1] = x.sin
+		transform[2, 2] = x.cos * y.cos
+		return transform
+	}
+
+	public static func rotate(_ a: [Angle]) -> AffineTransform {
+		assert(a.count == 3, "Rotate expects three angles")
+		return rotate(x: a[0], y: a[1], z: a[2])
+	}
+
+	public func concatenated(with other: AffineTransform) -> AffineTransform {
+		AffineTransform(values.enumerated().map { rowIndex, row in
+			row.enumerated().map { columnIndex, value in
+				value * other[rowIndex, columnIndex]
+			}
+		})
+	}
+
+	public func translate(x: Double = 0, y: Double = 0, z: Double = 0) -> AffineTransform {
+		concatenated(with: .translate(x: x, y: y, z: z))
+	}
+
+	public func translate(_ v: Vector3D) -> AffineTransform {
+		concatenated(with: .translate(v))
+	}
+
+	public func scale(_ v: Vector3D) -> AffineTransform {
+		concatenated(with: .scale(v))
+	}
+
+	public func rotate(_ a: [Angle]) -> AffineTransform {
+		concatenated(with: .rotate(a))
+	}
+
 	public subscript(_ row: Int, _ column: Int) -> Double {
 		get {
 			values[row][column]
@@ -39,8 +104,15 @@ public struct AffineTransform: SCADValue {
 			values[row][column] = newValue
 		}
 	}
-
 }
+
+
+extension AffineTransform: SCADValue {
+	public var scadString: String {
+		values.scadString
+	}
+}
+
 
 struct Transform: Geometry3D {
 	let transform: AffineTransform
