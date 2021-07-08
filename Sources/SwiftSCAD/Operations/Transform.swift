@@ -98,9 +98,13 @@ public struct AffineTransform {
 
 	public subscript(_ row: Int, _ column: Int) -> Double {
 		get {
-			values[row][column]
+			assert((0...3).contains(row), "Row index out of range")
+			assert((0...3).contains(column), "Column index out of range")
+			return values[row][column]
 		}
 		set {
+			assert((0...3).contains(row), "Row index out of range")
+			assert((0...3).contains(column), "Column index out of range")
 			values[row][column] = newValue
 		}
 	}
