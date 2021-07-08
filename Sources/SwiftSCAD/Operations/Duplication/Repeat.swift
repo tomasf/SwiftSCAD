@@ -70,6 +70,14 @@ extension Geometry2D {
 		}
 	}
 
+	public func `repeat`(in range: Range<Angle>, count: Int) -> Geometry2D {
+		let step = (range.upperBound - range.lowerBound) / Double(count)
+		let strideBy = stride(from: range.lowerBound, to: range.upperBound, by: step)
+		return ForEach(strideBy) { value in
+			self.rotate(value)
+		}
+	}
+
 	public func distibute(at offsets: [Double], along axis: Axis2D) -> Geometry2D {
 		ForEach(offsets) { offset in
 			self.translate(Vector2D(axis: axis, value: offset))

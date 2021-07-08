@@ -56,10 +56,10 @@ extension Array: SCADValue where Element: SCADValue {
 
 struct SCADCall: SCADFormattable {
 	let name: String
-	let params: [String: SCADValue]
+	let params: [String: SCADValue?]
 	let body: SCADFormattable?
 
-	init(name: String, params: [String: SCADValue] = [:], body: SCADFormattable? = nil) {
+	init(name: String, params: [String: SCADValue?] = [:], body: SCADFormattable? = nil) {
 		self.name = name
 		self.params = params
 		self.body = body
@@ -67,6 +67,7 @@ struct SCADCall: SCADFormattable {
 
 	func scadString(environment: Environment) -> String {
 		let paramText = params
+			.compactMapValues { $0 }
 			.sorted(by: { a, b in a.key < b.key })
 			.map { key, value in "\(key)=\(value.scadString)"}.joined(separator: ", ")
 
