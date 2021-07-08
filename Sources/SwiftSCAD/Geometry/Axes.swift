@@ -1,10 +1,3 @@
-//
-//  Axes.swift
-//  Geometry3DGenerator
-//
-//  Created by Tomas Franzén on 2021-06-28.
-//
-
 import Foundation
 
 public enum Axis3D: Int {

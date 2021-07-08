@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Tomas Franzén on 2021-07-08.
-//
-
 import Foundation
 
 public struct CylinderBridge: Shape2D {

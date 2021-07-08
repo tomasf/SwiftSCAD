@@ -1,10 +1,3 @@
-//
-//  Shape.swift
-//  GeometryGenerator
-//
-//  Created by Tomas Franzén on 2021-06-30.
-//
-
 import Foundation
 
 public protocol Shape: Geometry3D {

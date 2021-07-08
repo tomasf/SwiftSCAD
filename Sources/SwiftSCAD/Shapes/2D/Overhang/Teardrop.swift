@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Tomas Franzén on 2021-07-03.
-//
-
 import Foundation
 
 public struct Teardrop: Shape2D {

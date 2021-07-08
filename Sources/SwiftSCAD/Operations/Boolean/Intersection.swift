@@ -1,10 +1,3 @@
-//
-//  Union.swift
-//  Geometry3DGenerator
-//
-//  Created by Tomas Franzén on 2021-06-28.
-//
-
 import Foundation
 
 struct Intersection3D: Geometry3D {

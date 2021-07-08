@@ -1,10 +1,3 @@
-//
-//  Modifiers.swift
-//  GeometryGenerator
-//
-//  Created by Tomas Franzén on 2021-06-29.
-//
-
 import Foundation
 
 func facetModification(_ facets: Environment.Facets, body: Geometry, environment: Environment) -> String {

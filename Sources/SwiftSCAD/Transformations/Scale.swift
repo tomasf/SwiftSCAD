@@ -1,10 +1,3 @@
-//
-//  Translate.swift
-//  Geometry3DGenerator
-//
-//  Created by Tomas Franzén on 2021-06-28.
-//
-
 import Foundation
 
 struct Scale3D: Geometry3D {

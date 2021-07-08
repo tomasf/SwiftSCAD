@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Tomas Franzén on 2021-07-04.
-//
-
 import Foundation
 
 fileprivate func saveToFile(string: String, to path: String) {

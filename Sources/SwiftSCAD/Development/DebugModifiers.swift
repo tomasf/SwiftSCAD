@@ -1,10 +1,3 @@
-//
-//  Debug.swift
-//  GeometryGenerator
-//
-//  Created by Tomas Franzén on 2021-06-29.
-//
-
 import Foundation
 
 struct Prefix3D: Geometry3D {

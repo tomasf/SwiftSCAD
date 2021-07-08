@@ -1,10 +1,3 @@
-//
-//  Arc.swift
-//  GeometryGenerator
-//
-//  Created by Tomas Franzén on 2021-06-29.
-//
-
 import Foundation
 
 public struct Arc: Geometry2D {

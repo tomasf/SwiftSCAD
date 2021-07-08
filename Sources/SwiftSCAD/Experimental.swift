@@ -1,10 +1,3 @@
-//
-//  Experimental.swift
-//  
-//
-//  Created by Tomas Franzén on 2021-07-06.
-//
-
 import Foundation
 
 public func Translate(_ distance: Vector3D, @UnionBuilder _ body: () -> Geometry3D) -> Geometry3D {

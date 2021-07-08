@@ -1,10 +1,3 @@
-//
-//  ForEach.swift
-//  Geometry3DGenerator
-//
-//  Created by Tomas Franzén on 2021-06-28.
-//
-
 import Foundation
 
 public enum ForEachOperation {

@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Tomas Franzén on 2021-07-05.
-//
-
 import Foundation
 
 public protocol SCADFormattable {
