@@ -92,8 +92,16 @@ public struct AffineTransform {
 		concatenated(with: .scale(v))
 	}
 
+	public func scale(x: Double = 1, y: Double = 1, z: Double = 1) -> AffineTransform {
+		concatenated(with: .scale(x: x, y: y, z: z))
+	}
+
 	public func rotate(_ a: [Angle]) -> AffineTransform {
 		concatenated(with: .rotate(a))
+	}
+
+	public func rotate(x: Angle = 0, y: Angle = 0, z: Angle = 0) -> AffineTransform {
+		concatenated(with: .rotate(x: x, y: y, z: z))
 	}
 
 	public subscript(_ row: Int, _ column: Int) -> Double {
