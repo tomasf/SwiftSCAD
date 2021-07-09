@@ -36,6 +36,10 @@ public extension Geometry3D {
 	func withFacets(count: Int) -> Geometry3D {
 		SetFacets3D(facets: .fixed(count), body: self)
 	}
+
+	func withDefaultFacets() -> Geometry3D {
+		SetFacets3D(facets: .defaults, body: self)
+	}
 }
 
 
@@ -55,5 +59,9 @@ public extension Geometry2D {
 
 	func withFacets(count: Int) -> Geometry2D {
 		SetFacets2D(facets: .fixed(count), body: self)
+	}
+
+	func withDefaultFacets() -> Geometry2D {
+		SetFacets2D(facets: .defaults, body: self)
 	}
 }
