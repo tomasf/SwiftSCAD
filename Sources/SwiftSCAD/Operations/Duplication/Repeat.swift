@@ -31,6 +31,14 @@ extension Geometry3D {
 		}
 	}
 
+	public func `repeat`(around axis: Axis3D, in range: Range<Angle>, count: Int) -> Geometry3D {
+		let step = (range.upperBound - range.lowerBound) / Double(count)
+		let strideBy = stride(from: range.lowerBound, to: range.upperBound, by: step)
+		return ForEach(strideBy) { value in
+			self.rotate(angle: value, axis: axis)
+		}
+	}
+
 	public func distibute(at offsets: [Double], along axis: Axis3D) -> Geometry3D {
 		ForEach(offsets) { offset in
 			self.translate(Vector3D(axis: axis, value: offset))
