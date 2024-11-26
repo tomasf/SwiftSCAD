@@ -51,13 +51,13 @@ public extension Geometry3D {
     func applyingTopEdgeProfile(_ profile: EdgeProfile, at z: Double? = nil, method: EdgeProfile.Method) -> any Geometry3D {
         if let z {
             applyingTopEdgeProfile(profile, at: z, method: method) {
-                projection(slicingAtZ: z - 0.01)
+                projected(slicedAt: z - 0.01)
             }
         } else {
             measuringBounds { _, box in
                 let box = box.requireNonNil()
                 applyingTopEdgeProfile(profile, at: box.maximum.z, method: method) {
-                    projection(slicingAtZ: box.maximum.z - 0.01)
+                    projected(slicedAt: box.maximum.z - 0.01)
                 }
             }
         }
@@ -99,13 +99,13 @@ public extension Geometry3D {
     func applyingBottomEdgeProfile(_ profile: EdgeProfile, at z: Double? = nil, method: EdgeProfile.Method) -> any Geometry3D {
         if let z {
             applyingBottomEdgeProfile(profile, at: z, method: method) {
-                projection(slicingAtZ: z + 0.01)
+                projected(slicedAt: z + 0.01)
             }
         } else {
             measuringBounds { _, box in
                 let box = box.requireNonNil()
                 applyingBottomEdgeProfile(profile, at: box.minimum.z, method: method) {
-                    projection(slicingAtZ: box.minimum.z + 0.01)
+                    projected(slicedAt: box.minimum.z + 0.01)
                 }
             }
         }
