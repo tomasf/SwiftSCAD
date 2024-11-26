@@ -56,18 +56,18 @@ public struct BoundingBox<V: Vector>: Sendable {
     }
 }
 
-extension BoundingBox {
+public extension BoundingBox {
     /// The size of the bounding volume.
     ///
     /// This property calculates the size of the bounding volume as the difference between its maximum and minimum points, representing the volume's dimensions in each axis.
-    public var size: V {
+    var size: V {
         maximum - minimum
     }
 
     /// The center point of the bounding volume.
     ///
     /// This property calculates the center of the bounding volume, which is halfway between the minimum and maximum points. It represents the geometric center of the volume.
-    public var center: V {
+    var center: V {
         minimum + size / 2.0
     }
 
@@ -79,14 +79,14 @@ extension BoundingBox {
     /// - Parameter axis: The axis for which to retrieve the coordinate range.
     /// - Returns: A `Range<Double>` representing the minimum to maximum coordinates along the given axis.
     ///
-    public subscript(_ axis: V.Axis) -> Range<Double> {
+    subscript(_ axis: V.Axis) -> Range<Double> {
         .init(minimum[axis], maximum[axis])
     }
 
     /// Determines whether the bounding box is valid.
     ///
     /// A bounding box is considered valid if it represents a real geometric area or volume, which means all its dimensions must be non-negative. This property checks that the size of the bounding box in each dimension is greater than or equal to zero, ensuring the box does not represent an inverted or non-existent space.
-    public var isValid: Bool {
+    var isValid: Bool {
         !size.contains { $0 < 0 }
     }
 
@@ -95,7 +95,7 @@ extension BoundingBox {
     /// This method returns a new `BoundingBox` representing the volume that is common to both this and another bounding volume. If the bounding volumes do not intersect, the result is a bounding volume with zero size at the point of closest approach.
     /// - Parameter other: The other bounding volume to intersect with.
     /// - Returns: A `BoundingBox` representing the intersection of the two volumes.
-    public func intersection(with other: BoundingBox<V>) -> BoundingBox? {
+    func intersection(with other: BoundingBox<V>) -> BoundingBox? {
         let overlap = BoundingBox(minimum: V.max(minimum, other.minimum), maximum: V.min(maximum, other.maximum))
         return overlap.isValid ? overlap : nil
     }
@@ -105,43 +105,11 @@ extension BoundingBox {
     /// This method returns a new `BoundingBox` that has been expanded or contracted by the specified vector. The expansion occurs outward from the center in all dimensions if the vector's components are positive, and inward if they are negative.
     /// - Parameter expansion: The vector by which to expand or contract the bounding volume.
     /// - Returns: A `BoundingBox` that has been offset by the expansion vector.
-    public func offset(_ expansion: V) -> BoundingBox {
+    func offset(_ expansion: V) -> BoundingBox {
         .init(minimum: minimum - expansion, maximum: maximum + expansion)
     }
 
-    public func transformed(_ transform: V.Transform) -> BoundingBox {
+    func transformed(_ transform: V.Transform) -> BoundingBox {
         .init([transform.apply(to: minimum), transform.apply(to: maximum)])
-    }
-}
-
-extension BoundingBox {
-    func translation(for alignment: GeometryAlignment<V>) -> V {
-        alignment.values.map { axis, axisAlignment in
-            axisAlignment?.translation(origin: minimum[axis], size: size[axis]) ?? 0
-        }.vector
-    }
-}
-
-extension BoundingBox: CustomDebugStringConvertible {
-    public var debugDescription: String {
-        "[min: \(minimum), max: \(maximum)]"
-    }
-}
-
-extension BoundingBox2D? {
-    func requireNonNil() -> BoundingBox2D {
-        guard let box = self else {
-            preconditionFailure("Bounding box was empty")
-        }
-        return box
-    }
-}
-
-extension BoundingBox3D? {
-    func requireNonNil() -> BoundingBox3D {
-        guard let box = self else {
-            preconditionFailure("Bounding box was empty")
-        }
-        return box
     }
 }

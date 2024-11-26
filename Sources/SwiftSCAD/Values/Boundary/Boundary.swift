@@ -44,12 +44,12 @@ internal extension Boundary {
         .init(points: points.flatMap(function))
     }
 
-    func translated(_ translation: V) -> Boundary<V> {
-        transformed(.translation(translation))
-    }
-
     func transformed(_ transform: V.Transform) -> Boundary<V> {
         map { transform.apply(to: $0) }
+    }
+
+    func translated(_ translation: V) -> Boundary<V> {
+        transformed(.translation(translation))
     }
 
     func min(_ axis: V.Axis) -> Double? {
@@ -76,33 +76,5 @@ internal extension Boundary {
         .points(points.flatMap { point in
             other.points.map { $0 + point }
         })
-    }
-}
-
-internal extension Boundary {
-    enum MergeStrategy {
-        case union
-        case boxIntersection
-        case first
-        case minkowskiSum
-        case custom (([Boundary]) -> Boundary)
-
-        func apply(_ bounds: [Boundary]) -> Boundary {
-            switch self {
-            case .union:
-                .union(bounds)
-            case .boxIntersection:
-                bounds.compactMap(\.boundingBox)
-                    .reduce { $0.intersection(with: $1) ?? .zero }
-                    .map { Boundary(boundingBox: $0) }
-                ?? .empty
-            case .first:
-                bounds.first ?? .empty
-            case .minkowskiSum:
-                bounds.reduce { $0.minkowskiSum($1) } ?? .empty
-            case .custom (let function):
-                function(bounds)
-            }
-        }
     }
 }

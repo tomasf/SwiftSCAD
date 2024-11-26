@@ -33,14 +33,33 @@ public extension Geometry3D {
     ///
     /// Example usage:
     /// ```
-    /// let cube = Box([2, 2, 2])
+    /// let cube = Box(2)
     /// let compositeGeometry = cube.cloned { $0.rotated(x: 45°) }
     /// ```
-    /// This example produces `compositeGeometry`, which includes the original cube and a translated copy, demonstrating the transformation visually.
     func cloned(@GeometryBuilder3D _ transform: (any Geometry3D) -> any Geometry3D) -> any Geometry3D {
         adding(transform(self))
     }
 
+    /// Creates a composite geometry by adding a translated clone of the original geometry.
+    ///
+    /// Use this method to quickly duplicate a geometry and place the clone at a specified position
+    /// without the need to define a custom transformation closure.
+    ///
+    /// The original geometry remains unmodified, and the result includes both the original
+    /// and the translated clone.
+    ///
+    /// - Parameters:
+    ///   - x: The translation offset along the x-axis. The default value is `0`.
+    ///   - y: The translation offset along the y-axis. The default value is `0`.
+    ///   - z: The translation offset along the z-axis. The default value is `0`.
+    /// - Returns: A composite geometry that combines the original geometry and the translated clone.
+    ///
+    /// # Example
+    /// ```swift
+    /// let cube = Box(2)
+    /// let compositeGeometry = cube.clonedAt(x: 5)
+    /// ```
+    ///
     func clonedAt(x: Double = 0, y: Double = 0, z: Double = 0) -> any Geometry3D {
         cloned { $0.translated(x: x, y: y, z: z) }
     }

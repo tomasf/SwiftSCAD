@@ -1,7 +1,8 @@
 import Foundation
 
 public struct GeometryProxy: @unchecked Sendable {
-    private let outputProvider: (EnvironmentValues) -> (CodeFragment, name: String?, [any OutputFormat])
+    internal typealias Output = (CodeFragment, name: String?, [any OutputFormat])
+    private let outputProvider: (EnvironmentValues) -> Output
 
     internal init(_ geometry: any Geometry2D) {
         outputProvider = { environment in
@@ -25,7 +26,7 @@ public struct GeometryProxy: @unchecked Sendable {
         }
     }
 
-    internal func evaluated(in environment: EnvironmentValues) -> (CodeFragment, name: String?, [any OutputFormat]) {
+    internal func evaluated(in environment: EnvironmentValues) -> Output {
         outputProvider(environment)
     }
 }
