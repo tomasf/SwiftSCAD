@@ -1,3 +1,6 @@
+**As of July 2025, SwiftSCAD has been replaced by [Cadova](https://github.com/tomasf/Cadova). Cadova is similar to SwiftSCAD, but generates its own meshes and operates independently of OpenSCAD.**
+
+
 # SwiftSCAD
 SwiftSCAD is a library that allows you to create 3D and 2D CAD models in Swift. It acts as a preprocessor for [OpenSCAD][openscad], generating .scad files that can be previewed and rendered using the OpenSCAD application. This offers a more convenient API, breaking away from the limitations of the OpenSCAD language.
 
